@@ -1,0 +1,1 @@
+      	<div id="location"><?php echo $location; ?></div>

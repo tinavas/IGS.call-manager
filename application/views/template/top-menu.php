@@ -1,0 +1,1 @@
+				<div id="greeting">Hi {{user}} | logout</div>
