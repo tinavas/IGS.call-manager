@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .project
 .buildpath
 .settings
@@ -7,3 +8,11 @@ user_guide
 */logs/!index.html
 */cache/*
 */cache/!index.html
+||||||| merged common ancestors
+=======
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+>>>>>>> origin/master
