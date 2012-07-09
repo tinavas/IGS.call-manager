@@ -7,8 +7,8 @@ class User_check
 		if ($CI->router->class == 'user')
 			return TRUE;
 		
-		$sess_id = $CI->session->userdata('lend_user');
-		if (!$sess_id) {
+		$sess_id = $CI->session->userdata('IGS.login');
+		if ($sess_id !== 1) {
 			show_error('You must <a href="'.base_url().'user/login/?url='.urlencode($_SERVER["REQUEST_URI"]).'">login</a> first to continue.', 500, $heading = 'Login First');
 		}
 	}
