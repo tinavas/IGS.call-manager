@@ -125,6 +125,17 @@ class User extends CI_Controller {
 
 		return false;
 	}
+	
+	/*
+	 * Logout 
+	 */
+	function logout()
+	{
+		$this->session->set_userdata('IGS.username', NULL);
+		$this->session->set_userdata('IGS.login', NULL);
+		
+		redirect(base_url().'user', 'refresh');
+	}
 
 }
 ?>
