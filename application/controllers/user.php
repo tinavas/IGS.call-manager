@@ -34,9 +34,9 @@ class User extends CI_Controller {
 		} else {
 			$username = $this -> input -> post('username');
 			$password = $this -> input -> post('password');
-			
+
 			//check if username/password do exist
-			if($this -> check_login($username, $password)) {
+			if ($this -> check_login($username, $password)) {
 				redirect('/agent/', 'refresh');
 			} else {
 				//throw an error if login failed
@@ -59,9 +59,9 @@ class User extends CI_Controller {
 		} else {
 			$username = $this -> input -> post('username');
 			$password = $this -> input -> post('password');
-			
+
 			//try to save username password on database
-			if($this -> do_register($username, $password)) {
+			if ($this -> do_register($username, $password)) {
 				redirect('/user/login', 'refresh');
 			} else {
 				//throw an error when something goes wrong in saving username/password in database
@@ -102,10 +102,15 @@ class User extends CI_Controller {
 		$query = $this -> db -> get('igs_users', 1);
 
 		if ($query -> num_rows() == 1) {
+			//get user type
+			$row = $query -> row();
+			$user_type = $row -> user_type_id;
+
 			//set sessions
-			$this->session->set_userdata('IGS.username', $username);
-			$this->session->set_userdata('IGS.login', 1);
-			
+			$this -> session -> set_userdata('IGS.username', $username);
+			$this -> session -> set_userdata('IGS.login', 1);
+			$this -> session -> set_userdata('IGS.user_type', $user_type);
+
 			return true;
 		}
 
@@ -125,16 +130,16 @@ class User extends CI_Controller {
 
 		return false;
 	}
-	
+
 	/*
-	 * Logout 
+	 * Logout
 	 */
-	function logout()
-	{
-		$this->session->set_userdata('IGS.username', NULL);
-		$this->session->set_userdata('IGS.login', NULL);
+	function logout() {
+		$this -> session -> set_userdata('IGS.username', NULL);
+		$this -> session -> set_userdata('IGS.login', NULL);
+		$this -> session -> set_userdata('IGS.user_type', NULL);
 		
-		redirect(base_url().'user', 'refresh');
+		redirect(base_url() . 'user', 'refresh');
 	}
 
 }

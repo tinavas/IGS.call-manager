@@ -362,7 +362,7 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
-$config['enable_profiling'] = TRUE;
+$config['enable_profiling'] = FALSE;
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
