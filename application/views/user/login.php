@@ -6,6 +6,7 @@
 	<div class="clearFix"></div>
 	<div class="midcontentBody">
 		<form action="" method="post">
+			<?php echo $this->session->flashdata('prompt'); ?>
 			<table width="100%" border="0" cellpadding="5">
 				<tr>
 					<td width="10%"> Username: </td>

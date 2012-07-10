@@ -62,6 +62,7 @@ class User extends CI_Controller {
 
 			//try to save username password on database
 			if ($this -> do_register($username, $password)) {
+				$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Registration successful. You may now login.</span></div>');
 				redirect('/user/login', 'refresh');
 			} else {
 				//throw an error when something goes wrong in saving username/password in database
