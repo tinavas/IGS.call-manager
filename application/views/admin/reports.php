@@ -25,7 +25,7 @@
 								</tr>
 								<tr>
 									<td></td>
-									<td><input type="submit" name="search" id="search" value="Search" /></td>
+									<td><input type="submit" name="search" id="search" value="Download" /></td>
 								</tr>
 			        			<?php if (validation_errors()) : ?>
 								<tr>
@@ -56,7 +56,7 @@
 		</div>
 		<script type="text/javascript">
 		$(function() {
-			$('#sdate').datetimepicker();
-			$('#edate').datetimepicker();
+			$('#sdate').datetimepicker({ dateFormat: "yy-mm-dd" });
+			$('#edate').datetimepicker({ dateFormat: "yy-mm-dd" });
 		});
 		</script>
