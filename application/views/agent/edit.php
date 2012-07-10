@@ -10,6 +10,7 @@
 	        </div>
 	        <div class="rightcontentBody">
         		<div class="frm_container">
+        			<?php echo $this->session->flashdata('prompt'); ?>
 	        		<div class="frm_heading"><span>Basic Info</span></div>
 	        		<div class="frm_inputs">
 	        			<table class="info_view">

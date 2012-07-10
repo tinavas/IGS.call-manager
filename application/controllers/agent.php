@@ -117,7 +117,7 @@ class Agent extends CI_Controller {
 				//add borrower
 				$phone = $this -> Record_model -> add($_POST);
 				if ($phone) {
-					$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Record added.</span></div>');
+					$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Record updated.</span></div>');
 
 					redirect('/agent/edit/' . $phone, 'refresh');
 				}
