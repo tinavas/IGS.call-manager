@@ -4,7 +4,7 @@
 			<div class="clearFix"></div>
 			<div class="leftcontentBody">
 				<ul>
-					<li><a href="<?php echo base_url().'agent'; ?>">Search</a></li>
+					<li><a href="<?php echo base_url() . 'agent'; ?>">Search</a></li>
 					<li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
 				</ul>
 	        </div>
@@ -31,7 +31,7 @@
 										<?php echo validation_errors(); ?>
 									</td>
 								</tr>
-								<?php endif;?>
+								<?php endif; ?>
 								<?php if (isset($error)) : ?>
 								<tr>
 									<td>
@@ -41,7 +41,7 @@
 										<?php echo $error; ?>
 									</td>
 								</tr>
-								<?php endif;?>
+								<?php endif; ?>
 			        		</table>
 		        		</div>
 		        	</form>
@@ -56,6 +56,7 @@
 			        			<tr>
 			        				<th class="{sorter: false}">Phone</th>
 			        				<th>Agent</th>
+			        				<th>Disposition</th>
 			        				<th>Date</th>
 			        				<th>Action</th>
 			        			</tr>
@@ -64,8 +65,9 @@
 			        			<tr>
 				        			<td><?php echo $result['phone']; ?></td>
 				        			<td><?php echo $result['user_name']; ?></td>
+				        			<td><?php echo $this -> Record_model -> get_disposition($result['disposition_id']); ?></td>
 				        			<td><?php echo $result['rdate']; ?></td>
-				        			<td><a href="<?php echo base_url().'agent/edit/'.$_POST['phone']; ?>">Modify</a></td>
+				        			<td><a href="<?php echo base_url() . 'agent/edit/' . $_POST['phone']; ?>">Modify</a></td>
 			        			</tr>
 			        		</tbody>
 			        	</table>
@@ -76,9 +78,9 @@
 	        		<div class="frm_heading"><span>Result - No record Found!</span></div>
 	        		<div class="frm_inputs"></div>
         		</div>		
-	        	<div class="manage_menu"><a href="<?php echo base_url().'agent/add/'.$_POST['phone']; ?>" class="button_add">Create new record</a></div>
-        			<?php endif;?>
-        		<?php endif;?>
+	        	<div class="manage_menu"><a href="<?php echo base_url() . 'agent/add/' . $_POST['phone']; ?>" class="button_add">Create new record</a></div>
+        			<?php endif; ?>
+        		<?php endif; ?>
         		<div class="clearFix"></div>
 	        </div>
 	        <div class="clearFix"></div>

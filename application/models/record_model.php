@@ -9,12 +9,12 @@ Class Record_model extends CI_Model {
 	 * Search record with same phone number
 	 */
 	public function search($phone) {
-		
-		$this->db->order_by('record_id', 'DESC');
+
+		$this -> db -> order_by('record_id', 'DESC');
 		$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
 
 		if ($query -> num_rows() == 1) {
-			return $query->row_array();
+			return $query -> row_array();
 		}
 		return false;
 	}
@@ -24,7 +24,7 @@ Class Record_model extends CI_Model {
 		$channels = array('' => '');
 
 		foreach ($query->result_array() as $row) {
-			if($mode == 'utility') {
+			if ($mode == 'utility') {
 				$channels += array($row['channel_id'] => $row['utility']);
 			} else {
 				$channels += array($row['channel_id'] => $row['state']);
@@ -55,6 +55,16 @@ Class Record_model extends CI_Model {
 		} else {
 			return FALSE;
 		}
+	}
+
+	public function get_disposition($disposition_id) {
+		$query = $this -> db -> get_where('igs_dispositions', array('disposition_id' => $disposition_id));
+
+		if ($query -> num_rows() == 1) {
+			$row = $query -> row();
+			return $row -> label;
+		}
+		return FALSE;
 	}
 
 }
