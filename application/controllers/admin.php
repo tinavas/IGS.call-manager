@@ -19,5 +19,13 @@ class Admin extends CI_Controller {
 		//load view
 			$this -> load -> view('template/main', array('content' => 'admin/index', 'location' => 'Admin'));
 	}
+	
+	/*
+	 * reports page
+	 */
+	public function reports() {
+		//load view
+			$this -> load -> view('template/main', array('content' => 'admin/reports', 'location' => 'Admin / Reports'));
+	}
 
 }

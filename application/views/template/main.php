@@ -17,19 +17,19 @@
 <link type="text/css" href="<?php echo base_url(); ?>styles/css/style.css" rel="stylesheet" />
 
 <!-- jQuery -->
-<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/jquery-1.6.4-min.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/jquery-1.7.2-min.js"></script>
 
 <!-- jQuery-UI -->
-<link type="text/css" href="<?php echo base_url(); ?>styles/css/jquery-ui/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+<link type="text/css" href="<?php echo base_url(); ?>styles/css/jquery-ui/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/jquery-ui-1.8.21.custom.min.js"></script>
 
-<!-- Color Box -->
-<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/plugins/colorbox/jquery.colorbox-min.js"></script>
-<link type="text/css" href="<?php echo base_url(); ?>scripts/jquery/plugins/colorbox/colorbox.css" rel="stylesheet" />
+<!-- jQuery DateTime Picker -->
+<script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
 
 <!-- Table Sorter -->
 <link type="text/css" href="<?php echo base_url(); ?>styles/css/tablesorter/style.css" rel="stylesheet" />
 <script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/plugins/jquery.tablesorter.min.js"></script>
+
 </head>
 <body>
 	<div id="content">
