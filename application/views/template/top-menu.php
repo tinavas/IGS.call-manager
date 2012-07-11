@@ -1,1 +1,1 @@
-				<div id="greeting">Hi {{user}} | logout</div>
+				<div id="greeting">Welcome <?php echo $this -> session -> userdata('IGS.username'); ?> | <a href="<?php echo base_url(); ?>user/logout">Logout</a></div>

@@ -37,7 +37,7 @@
 			<div style="width: 820px; margin-left: 200px;">
 				<div id="nslogo"></div>
 				<div id="appTitle">IGS Call Manager</div>
-				<?php isset($_SESSION['lend_user']) ? $this->load->view('template/top-menu') : FALSE; //load top menus on user login ?>
+				<?php $this -> session -> userdata('IGS.username') ? $this->load->view('template/top-menu') : FALSE; //load top menus on user login ?>
 			</div>
 		</div>
 		<div id="navMenu">

@@ -8,7 +8,7 @@
 			<div class="leftcontentBody">
 				<ul>
 					<li><a href="<?php echo base_url().'agent'; ?>">Search</a></li>
-					<li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
+					
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">

@@ -7,7 +7,7 @@
 					<li><a href="<?php echo base_url().'admin/'; ?>">Home</a></li>
 					<li><a href="<?php echo base_url().'admin/manage'; ?>">Register User</a></li>
 					<li><a href="<?php echo base_url().'admin/reports'; ?>">Reports</a></li>
-					<li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
+					
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">
