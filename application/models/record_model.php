@@ -44,10 +44,26 @@ Class Record_model extends CI_Model {
 
 		return $dispositions;
 	}
+	
+	public function get_flag_reasons() {
+		$query = $this -> db -> get('igs_flag_reasons');
+		$flags = array('' => '');
+
+		foreach ($query->result_array() as $row) {
+			$flags += array($row['flag_id'] => $row['label']);
+		}
+
+		return $flags;
+	}
 
 	public function add($param = array()) {
 		$this -> db -> set('rdate', 'NOW()', FALSE);
 
+		//check if flag_id is 7, if not then assign NULL
+		if ($param['flag_id'] != 7) {
+			$param['flag_others'] = NULL;
+		}
+		
 		$insert = $this -> db -> insert('igs_records', $param);
 
 		if ($insert) {
@@ -59,6 +75,16 @@ Class Record_model extends CI_Model {
 
 	public function get_disposition($disposition_id) {
 		$query = $this -> db -> get_where('igs_dispositions', array('disposition_id' => $disposition_id));
+
+		if ($query -> num_rows() == 1) {
+			$row = $query -> row();
+			return $row -> label;
+		}
+		return FALSE;
+	}
+	
+	public function get_flag($flag_id) {
+		$query = $this -> db -> get_where('igs_flag_reasons', array('flag_id' => $flag_id));
 
 		if ($query -> num_rows() == 1) {
 			$row = $query -> row();

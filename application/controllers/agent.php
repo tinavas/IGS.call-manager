@@ -40,10 +40,12 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('phone', 'Phone Number', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('customer_name', 'Customer Name', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('account_no', 'Account Number', 'trim|required|xss_clean');
-		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|required|xss_clean');
+		$this -> form_validation -> set_rules('promo_code', 'Promo Code', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('state', 'State', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('flag_id', 'Flag Reason', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_notes', 'Call Notes', 'trim|xss_clean');
@@ -58,9 +60,11 @@ class Agent extends CI_Controller {
 			$channels_state = $this -> Record_model -> get_channels('state');
 			//get dispositions
 			$dispositions = $this -> Record_model -> get_dispositions();
+			//get flag reasons
+			$flags = $this -> Record_model -> get_flag_reasons();
 
 			//load view
-			$this -> load -> view('template/main', array('content' => 'agent/add', 'location' => 'Agent / Add Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions), 'menu' => array('Logout' => 'login/logout', )));
+			$this -> load -> view('template/main', array('content' => 'agent/add', 'location' => 'Agent / Add Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags), 'menu' => array('Logout' => 'login/logout', )));
 		} else {
 			if (isset($_POST['submit_record'])) {
 				//destroy submit_borrower from the POST array
@@ -87,10 +91,12 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('phone', 'Phone Number', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('customer_name', 'Customer Name', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('account_no', 'Account Number', 'trim|required|xss_clean');
-		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|required|xss_clean');
+		$this -> form_validation -> set_rules('promo_code', 'Promo Code', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('state', 'State', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('flag_id', 'Flag Reason', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_notes', 'Call Notes', 'trim|xss_clean');
@@ -105,11 +111,13 @@ class Agent extends CI_Controller {
 			$channels_state = $this -> Record_model -> get_channels('state');
 			//get dispositions
 			$dispositions = $this -> Record_model -> get_dispositions();
+			//get flag reasons
+			$flags = $this -> Record_model -> get_flag_reasons();
 			//get existing record info
 			$info = $this -> Record_model -> search($phone);
 
 			//load view
-			$this -> load -> view('template/main', array('content' => 'agent/edit', 'location' => 'Agent / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
+			$this -> load -> view('template/main', array('content' => 'agent/edit', 'location' => 'Agent / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
 		} else {
 			if (isset($_POST['submit_record'])) {
 				//destroy submit_borrower from the POST array

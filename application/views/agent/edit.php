@@ -47,6 +47,15 @@
 			        				<td><input type="text" name="account_no" value="<?php echo $record['account_no']; ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Agent ID:</td>
+			        				<td><input type="text" name="agent_id" value="<?php echo $record['agent_id']; ?>" /></td>
+			        			</tr>
+			        			<tr>
+			        				<td>Promo Code:</td>
+			        				<td><input type="text" name="promo_code" value="<?php echo $record['promo_code']; ?>" /></td>
+			        			</tr>
+			        			<!-- 
+			        			<tr>
 			        				<td>Channel:</td>
 			        				<td><?php echo form_dropdown('channel',$dropdown['channels'],$record['channel'],'id="channel"'); ?></td>
 			        			</tr>
@@ -54,6 +63,7 @@
 			        				<td>State:</td>
 			        				<td><input type="text" name="state" id="state" readonly="readonly" value="<?php echo $record['state']; ?>" /></td>
 			        			</tr>
+			        			-->
 			        		</table>
 		        		</div>
 	        		</div>
@@ -67,7 +77,11 @@
 			        			</tr>
 			        			<tr>
 			        				<td>Flag Reason:</td>
-			        				<td><input type="text" name="flag_id" value="<?php echo $record['flag_id']; ?>" /></td>
+			        				<td><?php echo form_dropdown('flag_id',$dropdown['flags'],$record['flag_id'],'id="flag_id"'); ?></td>
+			        			</tr>
+			        			<tr id="flag_others">
+			        				<td>Flag Others:</td>
+			        				<td><input type="text" name="flag_others" value="<?php echo $record['flag_others']; ?>" /></td>
 			        			</tr>
 			        			<tr>
 			        				<td>TPV Number:</td>
@@ -106,6 +120,26 @@
 	        <div class="clearFix"></div>
 		</div>
 		<script type="text/javascript">
+			function check_flag_reason(value) {
+				if(value == 7) {
+					$("#flag_others").show("slow", function() {
+						$(this).effect("highlight", {}, 3000);
+					});
+				} else {
+					$("#flag_others").hide("slow");
+				}
+				
+			}
+			
+			init_flag_id = $("#flag_id").val();
+			check_flag_reason(init_flag_id);
+			
+			$("#flag_id").change(function(){
+				selected = $(this).val();
+				check_flag_reason(selected);
+			});
+			
+		
 			$("#channel").change(function(){
 				channels = <?php echo json_encode($dropdown['channels_state']); ?>;
 
