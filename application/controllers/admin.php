@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 		//check if form is not submitted or validation returns an error
 		if ($this -> form_validation -> run() == FALSE) {
 			//load view
-			$this -> load -> view('template/main', array('content' => 'user/register', 'location' => 'User / Register'));
+			$this -> load -> view('template/main', array('content' => 'admin/register', 'location' => 'User / Register'));
 		} else {
 			$username = $this -> input -> post('username');
 			$password = $this -> input -> post('password');
@@ -110,6 +110,7 @@ class Admin extends CI_Controller {
 			$prompt['not_found'] = array();
 			$prompt['invalid'] = array();
 			$prompt['error'] = array();
+			$prompt['total'] = array();
 	
 			if(!empty($files)) {
 				//loop on all files
@@ -129,20 +130,30 @@ class Admin extends CI_Controller {
 							$confirmation_no = $info->tpv_no;
 							//get_date and convert it from MANILA to EST
 							$date = date('YmdHi',strtotime($info->rdate)-43200);
-							
+							//generate new filename
 							$new_filename = $dispo.'_'.$confirmation_no.'_'.$date;
-							
+							//get directory string
+							$dir = getcwd().'\igs-recordings\\';
 							//rename
-							$wav = getcwd().'\igs-recordings\\'.$file;
-							$mp3 = getcwd().'\igs-recordings\\'.$new_filename.'.mp3';
-							//rename($wav, $new_file);
+							$wav = $dir.$file;
+							$mp3 = $dir.$new_filename.'.mp3';
+							
+							//check if the new filename already exist
+							$ii = 1;
+							$file_name_temp = $mp3;
+							while(file_exists($file_name_temp)) {
+								//get again the non appended filename
+								$file_name_temp = $dir.$new_filename;
+								$file_name_temp .= '_'.++$ii.'.mp3';
+							}
+							$new_filename = $ii>1?$new_filename.'_'.$ii.'.mp3':$new_filename.'.mp3';
 							
 							//convert from wav to mp3
-							exec("C:/ffmpeg -i $wav -ar 22050 $mp3");
+							exec("C:/ffmpeg -i $wav -ar 22050 $file_name_temp");
 							//delete wav
 							unlink($wav);
 							
-							array_push($prompt['rename'],$file);
+							array_push($prompt['rename'],$file. ' -> '.$new_filename);
 						} else {
 							//phone not found in database
 							array_push($prompt['not_found'],$file);
@@ -151,11 +162,15 @@ class Admin extends CI_Controller {
 						//invalid format
 						array_push($prompt['invalid'],$file);
 					}
+					
+					//push total files
+					array_push($prompt['total'],$file);
 				}	
 			} else {
 				//empty folder
 				array_push($prompt['error'],'No files in folder');
 			}
+			
 			
 			//load view
 			$this -> load -> view('template/main', array('content' => 'admin/renamer', 'result' => $prompt, 'location' => 'Admin / Renamer'));

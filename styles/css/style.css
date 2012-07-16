@@ -376,3 +376,11 @@ td {
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+/* css for renamer result */
+#result {width: 70%; margin-top: 10px;}
+.sub_result {margin-bottom: 2px;}
+.total_result {background-color: #FFCCCC; padding: 5px; cursor: pointer;}
+.files_result {font-size: 10px; font-style: italic; display: none; }
+.files_result ul {padding: 0; margin: 0 0 0 10px; border-left: 1px solid #AFAFAF;}
+.files_result ul li {list-style-type: none; margin-left: 3px;}
