@@ -1,6 +1,6 @@
 		<div class="clearFix"></div>
 		<div class="contentBody">
-			<div class="contentTitle">Admin Page</div>
+			<div class="contentTitle">Renamer</div>
 			<div class="clearFix"></div>
 			<div class="leftcontentBody">
 				<ul>
@@ -12,7 +12,14 @@
 	        </div>
 	        <div class="rightcontentBody">
         		<div class="frm_container">
-        			<?php echo $this->session->flashdata('prompt'); ?>
+        			<form action="" method="post">
+						<table width="100%" border="0" cellpadding="5">
+							<tr>
+								<td><input type="submit" value="Rename" name="submit_register" /></td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
         		</div>
 	        </div>
 	        <div class="clearFix"></div>
