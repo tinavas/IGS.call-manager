@@ -15,7 +15,7 @@
         			<form action="" method="post">
 						<table width="100%" border="0" cellpadding="5">
 							<tr>
-								<td><input type="submit" value="Rename" name="submit_register" /></td>
+								<td><input type="submit" value="Rename" name="submit_rename" /></td>
 								<td></td>
 							</tr>
 						</table>
