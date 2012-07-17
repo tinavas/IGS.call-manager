@@ -57,7 +57,7 @@
 			        				<th class="{sorter: false}">Phone</th>
 			        				<th>Agent</th>
 			        				<th>Disposition</th>
-			        				<th>Date (Manila)</th>
+			        				<th>Last Update Date (Manila)</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
@@ -93,7 +93,7 @@
 			        				<th class="{sorter: false}">Phone</th>
 			        				<th>Agent</th>
 			        				<th>Disposition</th>
-			        				<th>Date (Manila)</th>
+			        				<th>Last Update Date (Manila)</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
