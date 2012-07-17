@@ -20,13 +20,14 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('phone', 'Phone', 'trim|required|numeric|xss_clean');
 
 		if ($this -> form_validation -> run() == FALSE) {
+			$prev_records = $this -> Record_model -> get_records($this->session->userdata('IGS.username'));
 			//load view
-			$this -> load -> view('template/main', array('content' => 'agent/index', 'location' => 'Agent / Search', 'menu' => array('Logout' => 'user/logout', )));
+			$this -> load -> view('template/main', array('content' => 'agent/index', 'location' => 'Agent / Search', 'records' => $prev_records, 'menu' => array('Logout' => 'user/logout', )));
 		} else {
 			$result = $this -> Record_model -> search($this -> input -> post('phone'));
-
-			//load view with results
-			$this -> load -> view('template/main', array('content' => 'agent/index', 'location' => 'Agent / Search', 'result' => $result, 'menu' => array('Logout' => 'login/logout', )));
+			$prev_records = $this -> Record_model -> get_records($this->session->userdata('IGS.username'));
+			//load view with results	
+			$this -> load -> view('template/main', array('content' => 'agent/index', 'location' => 'Agent / Search', 'result' => $result, 'records' => $prev_records, 'menu' => array('Logout' => 'login/logout', )));
 		}
 	}
 

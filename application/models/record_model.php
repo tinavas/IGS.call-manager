@@ -33,6 +33,22 @@ Class Record_model extends CI_Model {
 
 		return $channels;
 	}
+	
+	public function get_records($agent_name) {
+
+		$query = $this -> db -> query("
+			SELECT *
+			FROM igs_records
+			WHERE record_id IN (select max(record_id) from igs_records where user_name = '{$agent_name}' group by phone) 
+			ORDER BY record_id DESC
+			LIMIT 0,20
+		");
+
+		if ($query -> num_rows() > 0) {
+			return $query;
+		}
+		return false;
+	}
 
 	public function get_dispositions() {
 		$query = $this -> db -> get('igs_dispositions');

@@ -57,7 +57,7 @@
 			        				<th class="{sorter: false}">Phone</th>
 			        				<th>Agent</th>
 			        				<th>Disposition</th>
-			        				<th>Date</th>
+			        				<th>Date (Manila)</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
@@ -75,10 +75,47 @@
         		</div>
         			<?php else : ?>
         		<div class="frm_container">
-	        		<div class="frm_heading"><span>Result - No record Found!</span></div>
+	        		<div class="frm_heading"><span>Result - No Record Found!</span></div>
 	        		<div class="frm_inputs"></div>
         		</div>		
 	        	<div class="manage_menu"><a href="<?php echo base_url() . 'agent/add/' . $_POST['phone']; ?>" class="button_add">Create new record</a></div>
+	        	<div class="clearFix"></div>
+        			<?php endif; ?>
+        		<?php endif; ?>
+        		<?php if(isset($records)) : ?>
+        			<?php if($records) : ?>
+        		<div class="frm_container">
+	        		<div class="frm_heading"><span>Previous Records</span></div>
+	        		<div class="frm_inputs">
+	        			<table class="tablesorter" cellspacing="1">
+			        		<thead>
+			        			<tr>
+			        				<th class="{sorter: false}">Phone</th>
+			        				<th>Agent</th>
+			        				<th>Disposition</th>
+			        				<th>Date (Manila)</th>
+			        				<th>Action</th>
+			        			</tr>
+			        		</thead>
+			        		<tbody>
+			        			<?php foreach($records->result_array() as $record): ?>
+			        			<tr>
+				        			<td><?php echo $record['phone']; ?></td>
+				        			<td><?php echo $record['user_name']; ?></td>
+				        			<td><?php echo $this -> Record_model -> get_disposition($record['disposition_id']); ?></td>
+				        			<td><?php echo $record['rdate']; ?></td>
+				        			<td><a href="<?php echo base_url() . 'agent/edit/' . $record['phone']; ?>">Modify</a></td>
+			        			</tr>
+			        			<?php endforeach; ?>
+			        		</tbody>
+			        	</table>
+	        		</div>
+        		</div>
+        			<?php else : ?>
+        		<div class="frm_container">
+	        		<div class="frm_heading"><span>No Recent Records</span></div>
+	        		<div class="frm_inputs"></div>
+        		</div>		
         			<?php endif; ?>
         		<?php endif; ?>
         		<div class="clearFix"></div>
