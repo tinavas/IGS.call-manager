@@ -43,7 +43,7 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('promo_code', 'Promo Code', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('state', 'State', 'trim|xss_clean');
-		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('flag_id', 'Flag Reason', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
@@ -94,7 +94,7 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('promo_code', 'Promo Code', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('state', 'State', 'trim|xss_clean');
-		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('flag_id', 'Flag Reason', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
