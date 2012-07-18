@@ -60,7 +60,7 @@ Class Record_model extends CI_Model {
 	}
 
 	public function get_dispositions() {
-		$query = $this -> db -> get('igs_dispositions');
+		$query = $this -> db -> get_where('igs_dispositions', array('active' => 1));
 		$dispositions = array('' => '');
 
 		foreach ($query->result_array() as $row) {
