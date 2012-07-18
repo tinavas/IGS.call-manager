@@ -10,6 +10,9 @@ class Admin extends CI_Controller {
 		//load model
 		$this -> load -> model('Admin_model');
 		$this -> load -> model('Record_model');
+		
+		//set maximum execution file to infinite
+		ini_set('MAX_EXECUTION_TIME', -1);
 	}
 
 	/*
@@ -127,7 +130,7 @@ class Admin extends CI_Controller {
 							//check if sale
 							$dispo = $info->disposition_id == 1 ? 'Sale':'NoSale';
 							//get confirmation number
-							$confirmation_no = $info->tpv_no;
+							$confirmation_no = $this->sanitize($info->tpv_no);
 							//get_date and convert it from MANILA to EST
 							$date = date('YmdHi',strtotime($info->rdate)-43200);
 							//generate new filename
@@ -179,5 +182,29 @@ class Admin extends CI_Controller {
 			$this -> load -> view('template/main', array('content' => 'admin/renamer', 'location' => 'Admin / Renamer'));
 		}
 	}
+
+	/**
+	 * Function: sanitize
+	 * Returns a sanitized string, typically for URLs.
+	 *
+	 * Parameters:
+	 *     $string - The string to sanitize.
+	 *     $force_lowercase - Force the string to lowercase?
+	 *     $anal - If set to *true*, will remove all non-alphanumeric characters.
+	 */
+	private function sanitize($string, $force_lowercase = true, $anal = false) {
+	    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
+	                   "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
+	                   "—", "–", ",", "<", ".", ">", "/", "?");
+	    $clean = trim(str_replace($strip, "", strip_tags($string)));
+	    $clean = preg_replace('/\s+/', "-", $clean);
+	    $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
+	    return ($force_lowercase) ?
+	        (function_exists('mb_strtolower')) ?
+	            mb_strtolower($clean, 'UTF-8') :
+	            strtolower($clean) :
+	        $clean;
+	}
+
 
 }

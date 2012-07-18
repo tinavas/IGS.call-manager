@@ -111,7 +111,7 @@ Class Record_model extends CI_Model {
 
 	public function get_info($phone) {
 		$this -> db -> order_by('record_id', 'DESC');
-		$query = $this -> db -> get_where('igs_records', array('phone' => $phone));
+		$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
 
 		if ($query -> num_rows() == 1) {
 			$row = $query -> row();
