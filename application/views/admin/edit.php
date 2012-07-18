@@ -82,12 +82,12 @@
 			        				<td><input type="text" name="flag_others" value="<?php echo $record['flag_others']; ?>" /></td>
 			        			</tr>
 			        			<tr>
-			        				<td>Confirmation # (electric):</td>
-			        				<td><input type="text" name="conf_el" value="<?php echo $record['conf_el']; ?>" /></td>
+			        				<td>Confirmation # 1:</td>
+			        				<td><input type="text" name="conf_1" value="<?php echo $record['conf_1']; ?>" /></td>
 			        			</tr>
 			        			<tr>
-			        				<td>Confirmation # (gas):</td>
-			        				<td><input type="text" name="conf_gas" value="<?php echo $record['conf_gas']; ?>" /></td>
+			        				<td>Confirmation # 2:</td>
+			        				<td><input type="text" name="conf_2" value="<?php echo $record['conf_2']; ?>" /></td>
 			        			</tr>
 			        			<tr>
 			        				<td>TPV Number:</td>

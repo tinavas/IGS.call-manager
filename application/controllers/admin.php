@@ -195,9 +195,9 @@ class Admin extends CI_Controller {
 							
 							if($dispo == 'Sale') {
 								//get confirmation numbers and put in mid part of filename
-								$conf_el = strlen(trim($info->conf_el) > 0) ? $info->conf_el.'-':'';
-								$conf_gas = strlen(trim($info->conf_gas) > 0) ? $info->conf_gas:'';
-								$mid = $this->sanitize($conf_el.$conf_gas);
+								$conf_1 = strlen(trim($info->conf_1) > 0) ? $info->conf_1.'-':'';
+								$conf_2 = strlen(trim($info->conf_2) > 0) ? $info->conf_2:'';
+								$mid = $this->sanitize($conf_1.$conf_2);
 							} else {
 								//get phone number and put in mid part of filename
 								$mid = $info->phone;
