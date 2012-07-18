@@ -4,8 +4,10 @@
 			<div class="clearFix"></div>
 			<div class="leftcontentBody">
 				<ul>
-					<li><a href="<?php echo base_url().'agent'; ?>">Search</a></li>
-					
+					<li><a href="<?php echo base_url().'admin/'; ?>">Home</a></li>
+					<li><a href="<?php echo base_url().'admin/register'; ?>">Register User</a></li>
+					<li><a href="<?php echo base_url().'admin/reports'; ?>">Reports</a></li>
+					<li><a href="<?php echo base_url().'admin/renamer'; ?>">Renamer</a></li>
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">
@@ -16,19 +18,15 @@
 	        			<table class="info_view">
 		        			<tr>
 		        				<td>Agent:</td>
-		        				<td><?php echo $this->session->userdata('IGS.username'); ?></td>
+		        				<td><?php echo $record['user_name']; ?></td>
 		        			</tr>
 		        			<tr>
 		        				<td>Phone Number:</td>
 		        				<td><?php echo $record['phone']; ?></td>
 		        			</tr>
 		        			<tr>
-		        				<td>Last Modified Date:</td>
+		        				<td>Entry Date:</td>
 		        				<td><?php echo $record['rdate']; ?></td>
-		        			</tr>
-		        			<tr>
-		        				<td>Last Modified by:</td>
-		        				<td><?php echo $record['user_name']; ?></td>
 		        			</tr>
 		        		</table>
 	        		</div>
@@ -112,7 +110,7 @@
 		        		</div>
 	        		</div>
 	        		<div>
-		        		<input type="hidden" name="user_name" value="<?php echo $this->session->userdata('IGS.username'); ?>" />
+		        		<input type="hidden" name="user_name" value="<?php echo $record['user_name']; ?>" />
 		        		<input type="hidden" name="phone" value="<?php echo $record['phone']; ?>" />
 	        		</div>
         		</form>

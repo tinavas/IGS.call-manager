@@ -8,15 +8,24 @@ Class Record_model extends CI_Model {
 	/*
 	 * Search record with same phone number
 	 */
-	public function search($phone) {
-
-		$this -> db -> order_by('record_id', 'DESC');
-		$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
-
-		if ($query -> num_rows() == 1) {
-			return $query -> row_array();
+	public function search($phone, $param = array()) {
+		
+		if(count($param) > 0) {
+			$query = $this -> db -> get_where('igs_records', $param, 1);
+	
+			if ($query -> num_rows() == 1) {
+				return $query -> row_array();
+			}
+		} else {
+			$this -> db -> order_by('record_id', 'DESC');
+			$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
+	
+			if ($query -> num_rows() == 1) {
+				return $query -> row_array();
+			}
 		}
 		return false;
+		
 	}
 
 	public function get_channels($mode = 'utility') {
@@ -84,6 +93,23 @@ Class Record_model extends CI_Model {
 
 		if ($insert) {
 			return $param['phone'];
+		} else {
+			return FALSE;
+		}
+	}
+	
+	public function update($record_id, $param = array()) {
+		//$this -> db -> set('rdate', 'NOW()', FALSE);
+
+		//check if flag_id is 7, if not then assign NULL
+		if ($param['flag_id'] != 7) {
+			$param['flag_others'] = NULL;
+		}
+
+		$update = $this->db->update('igs_records', $param, array('record_id' => $record_id));
+
+		if ($update) {
+			return $record_id;
 		} else {
 			return FALSE;
 		}
