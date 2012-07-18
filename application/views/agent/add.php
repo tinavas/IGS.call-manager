@@ -78,6 +78,14 @@
 			        				<td><input type="text" name="flag_others" value="<?php echo set_value('flag_others'); ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Confirmation # (electric):</td>
+			        				<td><input type="text" name="conf_el" value="<?php echo set_value('conf_el'); ?>" /></td>
+			        			</tr>
+			        			<tr>
+			        				<td>Confirmation # (gas):</td>
+			        				<td><input type="text" name="conf_gas" value="<?php echo set_value('conf_gas'); ?>" /></td>
+			        			</tr>
+			        			<tr>
 			        				<td>TPV Number:</td>
 			        				<td><input type="text" name="tpv_no" value="<?php echo set_value('tpv_no'); ?>" /></td>
 			        			</tr>
