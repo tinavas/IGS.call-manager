@@ -190,16 +190,28 @@ class Admin extends CI_Controller {
 						//search phone in database
 						$info = $this->Record_model->get_info($phone);
 						if($info) {
-							//check if sale
-							$dispo = $info->disposition_id == 1 ? 'Sale':'NoSale';
-							//get confirmation number
-							$confirmation_no = $this->sanitize($info->tpv_no);
+							//check if disposed as sale and put in dispo part of filename
+							$dispo = ($info->disposition_id == 1 OR $info->disposition_id == 3) ? 'Sale':'NoSale';
+							
+							if($dispo == 'Sale') {
+								//get confirmation numbers and put in mid part of filename
+								$conf_el = strlen(trim($info->conf_el) > 0) ? $info->conf_el.'-':'';
+								$conf_gas = strlen(trim($info->conf_gas) > 0) ? $info->conf_gas:'';
+								$mid = $this->sanitize($conf_el.$conf_gas);
+							} else {
+								//get phone number and put in mid part of filename
+								$mid = $info->phone;
+							}
+							
 							//get_date and convert it from MANILA to EST
 							$date = date('YmdHi',strtotime($info->rdate)-43200);
+							
 							//generate new filename
-							$new_filename = $dispo.'_'.$confirmation_no.'_'.$date;
+							$new_filename = $dispo.'_'.$mid.'_'.$date;
+							
 							//get directory string
 							$dir = getcwd().'\igs-recordings\\';
+							
 							//rename
 							$wav = $dir.$file;
 							$mp3 = $dir.$new_filename.'.mp3';
