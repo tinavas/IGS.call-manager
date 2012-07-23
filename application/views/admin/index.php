@@ -64,13 +64,15 @@
 			        			</tr>
 			        		</thead>
 			        		<tbody>
+			        			<?php foreach($result->result_array() as $info) : ?>
 			        			<tr>
-				        			<td><?php echo $result['phone']; ?></td>
-				        			<td><?php echo $result['user_name']; ?></td>
-				        			<td><?php echo $this -> Record_model -> get_disposition($result['disposition_id']); ?></td>
-				        			<td><?php echo $result['rdate']; ?></td>
-				        			<td><a href="<?php echo base_url() . 'admin/edit/' . $result['record_id']; ?>">Modify</a></td>
+				        			<td><?php echo $info['phone']; ?></td>
+				        			<td><?php echo $info['user_name']; ?></td>
+				        			<td><?php echo $this -> Record_model -> get_disposition($info['disposition_id']); ?></td>
+				        			<td><?php echo $info['rdate']; ?></td>
+				        			<td><a href="<?php echo base_url() . 'admin/edit/' . $info['record_id']; ?>">Modify</a></td>
 			        			</tr>
+			        			<?php endforeach; ?>
 			        		</tbody>
 			        	</table>
 	        		</div>

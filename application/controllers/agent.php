@@ -85,7 +85,7 @@ class Agent extends CI_Controller {
 	/*
 	 * edit record
 	 */
-	public function edit($phone = NULL) {
+	public function edit($record_id = NULL) {
 
 		//validation
 		$this -> form_validation -> set_rules('user_name', 'User Name', 'trim|required|xss_clean');
@@ -115,7 +115,7 @@ class Agent extends CI_Controller {
 			//get flag reasons
 			$flags = $this -> Record_model -> get_flag_reasons();
 			//get existing record info
-			$info = $this -> Record_model -> search($phone);
+			$info = $this -> Record_model -> search(NULL, array('record_id' => $record_id));
 
 			//load view
 			$this -> load -> view('template/main', array('content' => 'agent/edit', 'location' => 'Agent / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
@@ -124,11 +124,11 @@ class Agent extends CI_Controller {
 				//destroy submit_borrower from the POST array
 				unset($_POST['submit_record']);
 				//add borrower
-				$phone = $this -> Record_model -> add($_POST);
-				if ($phone) {
+				$id = $this -> Record_model -> add($_POST);
+				if ($id) {
 					$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Record updated.</span></div>');
 
-					redirect('/agent/edit/' . $phone, 'refresh');
+					redirect('/agent/edit/' . $id, 'refresh');
 				}
 			}
 		}

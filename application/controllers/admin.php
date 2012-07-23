@@ -23,9 +23,8 @@ class Admin extends CI_Controller {
 		$this -> form_validation -> set_rules('phone', 'Phone', 'trim|required|numeric|xss_clean');
 
 		if ($this -> form_validation -> run() == FALSE) {
-			$prev_records = $this -> Record_model -> get_records($this->session->userdata('IGS.username'));
 			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/index', 'location' => 'Admin / Search', 'records' => $prev_records, 'menu' => array('Logout' => 'user/logout', )));
+			$this -> load -> view('template/main', array('content' => 'admin/index', 'location' => 'Admin / Search', 'menu' => array('Logout' => 'user/logout', )));
 		} else {
 			$result = $this -> Record_model -> search($this -> input -> post('phone'));
 			//load view with results	
@@ -106,6 +105,61 @@ class Admin extends CI_Controller {
 			//$this -> load -> view('template/main', array('content' => 'admin/reports', 'location' => 'Admin / Reports'));
 		}
 		
+	}
+	
+	/*
+	 * disposition management page
+	 */
+	public function disposition($do = NULL, $param = NULL) {
+		
+		switch ($do) {
+			case 'activate':
+				$activate = $this -> Record_model -> change_state_dispo($param, 1);
+				redirect('admin/disposition','refresh');
+				break;
+			case 'deactivate':
+				$activate = $this -> Record_model -> change_state_dispo($param, 0);
+				redirect('admin/disposition','refresh');
+				break;
+			case 'rename':
+				if(isset($_POST['cancel'])) {
+					redirect('admin/disposition','refresh');
+				}
+				//define validation rule
+				$this -> form_validation -> set_rules('disposition', 'Disposition', 'trim|xss_clean|required');
+				//check if form is not submitted or validation returns an error
+				if ($this -> form_validation -> run() == FALSE) {
+					//load view
+					$this -> load -> view('template/main', array('content' => 'admin/disposition_rename', 'disposition_id' => $param, 'location' => 'Admin / Disposition Management / Rename'));
+				} else {
+					$rename = $this -> Record_model -> rename_dispo($param, $_POST['disposition']);
+					redirect('admin/disposition','refresh');
+				}
+
+				break;
+			case 'add':
+				if(isset($_POST['cancel'])) {
+					redirect('admin/disposition','refresh');
+				}
+				//define validation rule
+				$this -> form_validation -> set_rules('disposition', 'Disposition', 'trim|xss_clean|required');
+				//check if form is not submitted or validation returns an error
+				if ($this -> form_validation -> run() == FALSE) {
+					//load view
+					$this -> load -> view('template/main', array('content' => 'admin/disposition_add', 'disposition_id' => $param, 'location' => 'Admin / Disposition Management / Add'));
+				} else {
+					$add = $this -> Record_model -> add_dispo($_POST['disposition']);
+					redirect('admin/disposition','refresh');
+				}
+
+				break;
+			default:
+				//get dispositions including inactive
+				$dispositions = $this -> Record_model -> get_dispositions(TRUE);
+				//load view
+				$this -> load -> view('template/main', array('content' => 'admin/disposition', 'dispositions' => $dispositions, 'location' => 'Admin / Disposition Management'));
+				break;
+		}
 	}
 	
 	/*

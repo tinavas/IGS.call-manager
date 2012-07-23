@@ -17,11 +17,24 @@ Class Record_model extends CI_Model {
 				return $query -> row_array();
 			}
 		} else {
+			/*
 			$this -> db -> order_by('record_id', 'DESC');
 			$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
-	
-			if ($query -> num_rows() == 1) {
-				return $query -> row_array();
+			*/
+			$query = $this->db->query("
+				SELECT *
+				FROM igs_records
+				WHERE record_id in (
+				  SELECT max(record_id)
+				  FROM igs_records 
+				  WHERE phone = '{$phone}'
+				  GROUP BY date(DATE_ADD(rdate,INTERVAL '-12' HOUR))
+				  order BY rdate
+				)
+			");
+			
+			if ($query -> num_rows() > 0) {
+				return $query;
 			}
 		}
 		return false;
@@ -59,15 +72,27 @@ Class Record_model extends CI_Model {
 		return false;
 	}
 
-	public function get_dispositions() {
-		$query = $this -> db -> get_where('igs_dispositions', array('active' => 1));
-		$dispositions = array('' => '');
+	public function get_dispositions($show_all = FALSE) {
+		$query = $show_all == FALSE ? $this -> db -> get_where('igs_dispositions', array('active' => 1)) : $this -> db -> get('igs_dispositions');
+		$dispositions = $show_all == FALSE ? array('' => '') : array();
 
 		foreach ($query->result_array() as $row) {
-			$dispositions += array($row['disposition_id'] => $row['label']);
+			$dispositions += $show_all == FALSE ? array($row['disposition_id'] => $row['label']) : array($row['disposition_id'] => array('label' => $row['label'], 'active' => $row['active']));
 		}
 
 		return $dispositions;
+	}
+	
+	public function change_state_dispo($dispo_id, $state = 1) {
+		$update = $this->db->update('igs_dispositions', array('active' => $state), array('disposition_id' => $dispo_id));
+	}
+	
+	public function rename_dispo($dispo_id, $label) {
+		$update = $this->db->update('igs_dispositions', array('label' => $label), array('disposition_id' => $dispo_id));
+	}
+	
+	public function add_dispo($label) {
+		$add = $this->db->insert('igs_dispositions', array('label' => $label));
 	}
 
 	public function get_flag_reasons() {
@@ -92,7 +117,7 @@ Class Record_model extends CI_Model {
 		$insert = $this -> db -> insert('igs_records', $param);
 
 		if ($insert) {
-			return $param['phone'];
+			return $this->db->insert_id();
 		} else {
 			return FALSE;
 		}
