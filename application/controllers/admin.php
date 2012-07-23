@@ -86,6 +86,14 @@ class Admin extends CI_Controller {
 	}
 
 	/*
+	 * stats page
+	 */
+	public function stats() {
+		//load view
+		$this -> load -> view('template/main', array('content' => 'admin/stats', 'location' => 'Admin / Stats'));
+	}
+
+	/*
 	 * reports page
 	 */
 	public function reports() {
