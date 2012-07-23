@@ -8,6 +8,7 @@
 					<li><a href="<?php echo base_url().'admin/register'; ?>">Register User</a></li>
 					<li><a href="<?php echo base_url().'admin/reports'; ?>">Reports</a></li>
 					<li><a href="<?php echo base_url().'admin/stats'; ?>">Hourly Stats</a></li>
+					<li><a href="<?php echo base_url().'admin/disposition'; ?>">Disposition</a></li>
 					<li><a href="<?php echo base_url().'admin/renamer'; ?>">Renamer</a></li>
 				</ul>
 	        </div>

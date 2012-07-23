@@ -8,6 +8,7 @@
 					<li><a href="<?php echo base_url().'admin/register'; ?>">Register User</a></li>
 					<li><a href="<?php echo base_url().'admin/reports'; ?>">Reports</a></li>
 					<li><a href="<?php echo base_url().'admin/stats'; ?>">Hourly Stats</a></li>
+					<li><a href="<?php echo base_url().'admin/disposition'; ?>">Disposition</a></li>
 					<li><a href="<?php echo base_url().'admin/renamer'; ?>">Renamer</a></li>
 				</ul>
 	        </div>
@@ -19,7 +20,7 @@
 			        		<thead>
 			        			<tr>
 			        				<th>Dispositions</th>
-			        				<th>Active</th>
+			        				<th>Enable</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
@@ -28,7 +29,7 @@
 			        			<tr>
 				        			<td><?php echo $info['label']; ?></td>
 				        			<td><?php echo $info['active'] == 1 ? 'Yes' : 'No'; ?></td>
-				        			<td><?php echo $info['active'] == 1 ? '<a href="'.base_url().'admin/disposition/deactivate/'.$disposition_id.'">deactivate</a>' : '<a href="'.base_url().'admin/disposition/activate/'.$disposition_id.'">activate</a>'; ?> | <a href="<?php echo base_url(); ?>admin/disposition/rename/<?php echo $disposition_id; ?>">rename</a> | <a href="<?php echo base_url(); ?>admin/disposition/add/">add</a></td>
+				        			<td><?php echo $info['active'] == 1 ? '<a href="'.base_url().'admin/disposition/deactivate/'.$disposition_id.'">disable</a>' : '<a href="'.base_url().'admin/disposition/activate/'.$disposition_id.'">enable</a>'; ?> | <a href="<?php echo base_url(); ?>admin/disposition/rename/<?php echo $disposition_id; ?>">rename</a> | <a href="<?php echo base_url(); ?>admin/disposition/add/">add</a></td>
 			        			</tr>
 			        			<?php endforeach; ?>
 			        		</tbody>
