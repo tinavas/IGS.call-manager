@@ -59,10 +59,11 @@ Class Record_model extends CI_Model {
 	public function get_records($agent_name) {
 
 		$query = $this -> db -> query("
-			SELECT *
-			FROM igs_records
-			WHERE record_id IN (select max(record_id) from igs_records where user_name = '{$agent_name}' group by phone) 
-			ORDER BY record_id DESC
+			SELECT a.*
+			FROM igs_records a
+			INNER JOIN (select max(record_id) as record_id from igs_records where user_name = '{$agent_name}' group by phone) b
+			ON a.record_id = b.record_id
+			ORDER BY a.record_id DESC
 			LIMIT 0,20
 		");
 
