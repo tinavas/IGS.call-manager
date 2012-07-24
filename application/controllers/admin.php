@@ -178,23 +178,28 @@ class Admin extends CI_Controller {
 		$this -> form_validation -> set_rules('username', 'Username', 'trim|xss_clean|required|callback_username_not_exist');
 		$this -> form_validation -> set_rules('password', 'Password', 'trim|xss_clean|required');
 		$this -> form_validation -> set_rules('password_conf', 'Confirm Password', 'trim||xss_clean|required|matches[password]');
-
+		$this -> form_validation -> set_rules('user_type_id', 'User Type', 'trim|xss_clean|required');
+		
 		//check if form is not submitted or validation returns an error
 		if ($this -> form_validation -> run() == FALSE) {
+			//get user types
+			$user_types = $this->Record_model->get_user_types();
+			
 			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/register', 'location' => 'User / Register'));
+			$this -> load -> view('template/main', array('content' => 'admin/register', 'dropdown' => array('user_types' => $user_types),'location' => 'User / Register'));
 		} else {
 			$username = $this -> input -> post('username');
 			$password = $this -> input -> post('password');
+			$type = $this -> input -> post('user_type_id');
 
 			//try to save username password on database
-			if ($this -> do_register($username, $password)) {
+			if ($this -> do_register($username, $password, $type)) {
 				$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Registration successful.</span></div>');
 				
 				redirect('/admin/', 'refresh');
 			} else {
 				//throw an error when something goes wrong in saving username/password in database
-				$this -> load -> view('template/main', array('content' => 'admin/register', 'location' => 'Admin / Register', 'error' => 'Registration failed. Please try again.'));
+				$this -> load -> view('template/main', array('content' => 'admin/register', 'dropdown' => array('user_types' => $user_types), 'location' => 'Admin / Register', 'error' => 'Registration failed. Please try again.'));
 			}
 		}
 	}
@@ -202,8 +207,8 @@ class Admin extends CI_Controller {
 	/*
 	 * register user and insert in database
 	 */
-	private function do_register($username, $password) {
-		$data = array('username' => $username, 'password' => $this -> _prep_password($password));
+	private function do_register($username, $password, $type) {
+		$data = array('username' => $username, 'password' => $this -> _prep_password($password), 'user_type_id' => $type);
 		$insert = $this -> db -> insert('igs_users', $data);
 
 		if ($insert) {

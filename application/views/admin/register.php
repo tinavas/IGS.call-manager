@@ -29,6 +29,10 @@
 								<td><input type="password" value="" name="password_conf" /></td>
 							</tr>
 							<tr>
+		        				<td>User Type:</td>
+		        				<td><?php echo form_dropdown('user_type_id',$dropdown['user_types'],set_value('user_type_id')); ?></td>
+		        			</tr>
+							<tr>
 								<td></td>
 								<td><input type="submit" value="Submit" name="submit_register" /></td>
 							</tr>

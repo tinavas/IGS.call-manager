@@ -14,6 +14,7 @@
 	        </div>
 	        <div class="rightcontentBody">
         		<div class="frm_container">
+        			<?php echo $this->session->flashdata('prompt'); ?>
 		        	<form action="" method="post">
 		        		<div class="frm_heading"><span>Search Record</span></div>
 		        		<div class="frm_inputs">

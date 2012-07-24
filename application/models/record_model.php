@@ -105,6 +105,17 @@ Class Record_model extends CI_Model {
 
 		return $flags;
 	}
+	
+	public function get_user_types() {
+		$query = $this -> db -> get('igs_user_types');
+		$types = array('' => '');
+
+		foreach ($query->result_array() as $row) {
+			$types += array($row['user_type_id'] => $row['label']);
+		}
+
+		return $types;
+	}
 
 	public function add($param = array()) {
 		$this -> db -> set('rdate', 'NOW()', FALSE);
