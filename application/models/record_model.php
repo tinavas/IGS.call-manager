@@ -72,7 +72,7 @@ Class Record_model extends CI_Model {
 		$query = $this -> db -> query("
 			SELECT a.*
 			FROM igs_records a
-			INNER JOIN (select max(record_id) as record_id from igs_records where user_name = '{$agent_name}' group by phone) b
+			INNER JOIN (select max(record_id) as record_id from igs_records where user_name = '{$agent_name}' group by phone, date(DATE_ADD(rdate,INTERVAL '-12' HOUR))) b
 			ON a.record_id = b.record_id
 			ORDER BY a.record_id DESC
 			LIMIT 0,20
