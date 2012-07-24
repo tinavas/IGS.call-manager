@@ -171,13 +171,22 @@ Class Record_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_info($phone) {
+	public function get_info($phone, $call_id) {
 		$this -> db -> order_by('record_id', 'DESC');
 		$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
 
 		if ($query -> num_rows() == 1) {
 			$row = $query -> row();
 			return $row;
+		} else {
+			$this -> db -> order_by('record_id', 'DESC');
+			$this->db->like('call_record_id', $call_id);
+			$query2 = $this->db->get('igs_records', 1);
+			
+			if ($query2 -> num_rows() == 1) {
+				$row = $query2 -> row();
+				return $row;
+			}
 		}
 		return FALSE;
 	}

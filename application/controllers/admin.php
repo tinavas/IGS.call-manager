@@ -253,18 +253,20 @@ class Admin extends CI_Controller {
 						//get phone part
 						$file_part = explode('_', $file);
 						$phone = $file_part[0];
+						$call_id = $file_part[1];
 						
 						//search phone in database
-						$info = $this->Record_model->get_info($phone);
+						$info = $this->Record_model->get_info($phone, $call_id);
 						if($info) {
 							//check if disposed as sale and put in dispo part of filename
 							$dispo = ($info->disposition_id == 1 OR $info->disposition_id == 3) ? 'Sale':'NoSale';
 							
 							if($dispo == 'Sale') {
 								//get confirmation numbers and put in mid part of filename
-								$conf_1 = strlen(trim($info->conf_1) > 0) ? $info->conf_1.'-':'';
-								$conf_2 = strlen(trim($info->conf_2) > 0) ? $info->conf_2:'';
-								$mid = $this->sanitize($conf_1.$conf_2);
+								$separator = (strlen(trim($info->conf_1) > 0) AND strlen(trim($info->conf_2) > 0)) ? '-':'';
+								$conf_1 = $info->conf_1;
+								$conf_2 = $info->conf_2;
+								$mid = $this->sanitize($conf_1.$separator.$conf_2);
 							} else {
 								//get phone number and put in mid part of filename
 								$mid = $info->phone;
@@ -339,7 +341,7 @@ class Admin extends CI_Controller {
 	                   "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
 	                   "—", "–", ",", "<", ".", ">", "/", "?");
 	    $clean = trim(str_replace($strip, "", strip_tags($string)));
-	    $clean = preg_replace('/\s+/', "-", $clean);
+	    $clean = preg_replace('/\s+/', "", $clean);
 	    $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
 	    return ($force_lowercase) ?
 	        (function_exists('mb_strtolower')) ?
