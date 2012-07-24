@@ -51,6 +51,7 @@ class Admin extends CI_Controller {
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_notes', 'Call Notes', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('market_id', 'Market', 'trim|xss_clean');
 
 		if ($this -> form_validation -> run() == FALSE) {
 			//change validation error delimiters
@@ -66,9 +67,11 @@ class Admin extends CI_Controller {
 			$flags = $this -> Record_model -> get_flag_reasons();
 			//get existing record info
 			$info = $this -> Record_model -> search(NULL, array('record_id' => $record_id));
+			//get markets
+			$markets = $this -> Record_model -> get_markets();
 
 			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
+			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags, 'markets' => $markets), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
 		} else {
 			if (isset($_POST['submit_record'])) {
 				//destroy submit_borrower from the POST array

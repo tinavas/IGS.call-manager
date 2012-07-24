@@ -78,6 +78,10 @@
 			        				<td><input type="text" name="flag_others" value="<?php echo set_value('flag_others'); ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Market:</td>
+			        				<td><?php echo form_dropdown('market_id',$dropdown['markets'],set_value('market_id')); ?></td>
+			        			</tr>
+			        			<tr>
 			        				<td>Confirmation # 1:</td>
 			        				<td><input type="text" name="conf_1" value="<?php echo set_value('conf_1'); ?>" /></td>
 			        			</tr>

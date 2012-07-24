@@ -56,6 +56,17 @@ Class Record_model extends CI_Model {
 		return $channels;
 	}
 	
+	public function get_markets() {
+		$query = $this -> db -> get('igs_markets');
+		$markets = array('' => '');
+
+		foreach ($query->result_array() as $row) {
+				$markets += array($row['market_id'] => $row['label']);
+		}
+
+		return $markets;
+	}
+	
 	public function get_records($agent_name) {
 
 		$query = $this -> db -> query("

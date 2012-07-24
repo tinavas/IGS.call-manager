@@ -84,6 +84,10 @@
 			        				<td><input type="text" name="flag_others" value="<?php echo $record['flag_others']; ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Market:</td>
+			        				<td><?php echo form_dropdown('market_id',$dropdown['markets'],$record['market_id']); ?></td>
+			        			</tr>
+			        			<tr>
 			        				<td>Confirmation # 1:</td>
 			        				<td><input type="text" name="conf_1" value="<?php echo $record['conf_1']; ?>" /></td>
 			        			</tr>
