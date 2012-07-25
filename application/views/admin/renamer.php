@@ -15,12 +15,33 @@
 	        <div class="rightcontentBody">
         		<div class="frm_container">
         			<form action="" method="post">
-						<table width="100%" border="0" cellpadding="5">
-							<tr>
-								<td><input type="submit" value="Rename" name="submit_rename" /> (Press to start renaming)</td>
-								<td></td>
-							</tr>
-						</table>
+        				<div class="frm_heading"><span>Enter Date Range</span></div>
+		        		<div class="frm_inputs">
+							<table class="form_tbl">
+								<tr>
+									<td>Start:</td>
+									<td><input type="text" name="sdate" id="sdate" value="<?php echo isset($_POST['sdate'])?$_POST['sdate']:''; ?>" /></td>
+								</tr>
+								<tr>
+									<td>End:</td>
+									<td><input type="text" name="edate" id="edate" value="<?php echo isset($_POST['edate'])?$_POST['edate']:''; ?>"/></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Rename" name="submit_rename" /> (Press to start renaming)</td>
+								</tr>
+								<?php if (validation_errors()) : ?>
+								<tr>
+									<td>
+										
+									</td>
+									<td>
+										<?php echo validation_errors(); ?>
+									</td>
+								</tr>
+								<?php endif;?>
+							</table>
+						</div>
 					</form>
         		</div>
         		<?php if(isset($result)) : ?>
@@ -87,5 +108,8 @@
 		  	{
 		    	$(this).parent().children('.files_result').slideToggle(600);
 		  	});
+		  	
+		  	$('#sdate').datetimepicker({ dateFormat: "yy-mm-dd" });
+			$('#edate').datetimepicker({ dateFormat: "yy-mm-dd" });
 		});
 		</script>

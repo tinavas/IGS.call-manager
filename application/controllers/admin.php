@@ -232,8 +232,14 @@ class Admin extends CI_Controller {
 	 * recordings renamer
 	 */
 	function renamer() {
-		//test if submit button is pressed
-		if(isset($_POST['submit_rename'])) {
+		//validate dates
+		$this -> form_validation -> set_rules('sdate', 'Start Date', 'trim|required|xss_clean');
+		$this -> form_validation -> set_rules('edate', 'End Date', 'trim|required|xss_clean');
+
+		if ($this -> form_validation -> run() == FALSE) {
+			//load view
+			$this -> load -> view('template/main', array('content' => 'admin/renamer', 'location' => 'Admin / Renamer'));
+		} else {
 			//load helper
 			$this->load->helper('file');
 			
@@ -257,9 +263,11 @@ class Admin extends CI_Controller {
 						$file_part = explode('_', $file);
 						$phone = $file_part[0];
 						$call_id = $file_part[1];
+						$sdate = $this->input->post('sdate');
+						$edate = $this->input->post('edate');
 						
 						//search phone in database
-						$info = $this->Record_model->get_info($phone, $call_id);
+						$info = $this->Record_model->get_info($phone, $call_id, $sdate, $edate);
 						if($info) {
 							//check if disposed as sale and put in dispo part of filename
 							$dispo = ($info->disposition_id == 1 OR $info->disposition_id == 3) ? 'Sale':'NoSale';
@@ -321,13 +329,10 @@ class Admin extends CI_Controller {
 				array_push($prompt['error'],'No files in folder');
 			}
 			
-			
 			//load view
 			$this -> load -> view('template/main', array('content' => 'admin/renamer', 'result' => $prompt, 'location' => 'Admin / Renamer'));
-		} else {
-			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/renamer', 'location' => 'Admin / Renamer'));
 		}
+		
 	}
 
 	/**

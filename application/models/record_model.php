@@ -183,9 +183,9 @@ Class Record_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_info($phone, $call_id) {
+	public function get_info($phone, $call_id, $sdate, $edate) {
 		$this -> db -> order_by('record_id', 'DESC');
-		$query = $this -> db -> get_where('igs_records', array('phone' => $phone), 1);
+		$query = $this -> db -> get_where('igs_records', array('phone' => $phone, 'rdate >=' => $sdate, 'rdate <=' => $edate), 1);
 
 		if ($query -> num_rows() == 1) {
 			$row = $query -> row();
@@ -193,6 +193,7 @@ Class Record_model extends CI_Model {
 		} else {
 			$this -> db -> order_by('record_id', 'DESC');
 			$this->db->like('call_record_id', $call_id);
+			$this -> db -> where(array('rdate >=' => $sdate, 'rdate <=' => $edate));
 			$query2 = $this->db->get('igs_records', 1);
 			
 			if ($query2 -> num_rows() == 1) {
