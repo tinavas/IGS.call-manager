@@ -98,6 +98,14 @@
 			        				<td><input type="text" name="call_record_id" value="<?php echo set_value('call_record_id'); ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Call Record ID 2:</td>
+			        				<td><input type="text" name="call_record_id2" value="<?php echo set_value('call_record_id2'); ?>" /></td>
+			        			</tr>
+			        			<tr>
+			        				<td>Call Record ID 3:</td>
+			        				<td><input type="text" name="call_record_id3" value="<?php echo set_value('call_record_id3'); ?>" /></td>
+			        			</tr>
+			        			<tr>
 			        				<td>Call Notes:</td>
 			        				<td><textarea rows="4" cols="50" name="call_notes"><?php echo set_value('call_notes'); ?></textarea></td>
 			        			</tr>

@@ -49,6 +49,8 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('call_record_id2', 'Call Record ID 2', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('call_record_id3', 'Call Record ID 3', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_notes', 'Call Notes', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('market_id', 'Market', 'trim|xss_clean');
 
@@ -103,6 +105,8 @@ class Agent extends CI_Controller {
 		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('call_record_id2', 'Call Record ID 2', 'trim|xss_clean');
+		$this -> form_validation -> set_rules('call_record_id3', 'Call Record ID 3', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_notes', 'Call Notes', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('market_id', 'Market', 'trim|xss_clean');
 
