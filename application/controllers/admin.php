@@ -236,6 +236,7 @@ class Admin extends CI_Controller {
 	 * recordings renamer
 	 */
 	function renamer() {
+		set_time_limit(2500); //set execution time limit from 300 to 2500 seconds;
 		//validate dates
 		$this -> form_validation -> set_rules('sdate', 'Start Date', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('edate', 'End Date', 'trim|required|xss_clean');
