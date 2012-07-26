@@ -192,8 +192,11 @@ Class Record_model extends CI_Model {
 			return $row;
 		} else {
 			$this -> db -> order_by('record_id', 'DESC');
-			$this -> db -> like('call_record_id', $call_id);
-			$this -> db -> where(array('rdate >=' => $sdate, 'rdate <=' => $edate));
+			
+			$this->db->where("rdate >= '{$sdate}' AND rdate <= '{$edate}' AND (call_record_id LIKE '%{$call_id}%' OR call_record_id2 LIKE '%{$call_id}%' OR call_record_id3 LIKE '%{$call_id}%')");  
+			
+			//$this -> db -> like('call_record_id', $call_id)->or_like('call_record_id2', $call_id)->or_like('call_record_id3', $call_id);
+			//$this -> db -> where(array('rdate >=' => $sdate, 'rdate <=' => $edate));
 			$query2 = $this -> db -> get('igs_records', 1);
 
 			if ($query2 -> num_rows() == 1) {
