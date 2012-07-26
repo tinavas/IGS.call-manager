@@ -47,6 +47,14 @@
 			        				<td><input type="text" name="account_no" value="<?php echo $record['account_no']; ?>" /></td>
 			        			</tr>
 			        			<tr>
+			        				<td>Account Number (GAS):</td>
+			        				<td><input type="text" name="account_no_gas" value="<?php echo $record['account_no_gas']; ?>" /></td>
+			        			</tr>
+			        			<tr>
+			        				<td>Account Number (ELEC):</td>
+			        				<td><input type="text" name="account_no_elec" value="<?php echo $record['account_no_elec']; ?>" /></td>
+			        			</tr>
+			        			<tr>
 			        				<td>Agent ID:</td>
 			        				<td><input type="text" name="agent_id" value="<?php echo $record['agent_id']; ?>" /></td>
 			        			</tr>
@@ -98,6 +106,10 @@
 			        			<tr>
 			        				<td>TPV Number:</td>
 			        				<td><input type="text" name="tpv_no" value="<?php echo $record['tpv_no']; ?>" /></td>
+			        			</tr>
+			        			<tr>
+			        				<td>TPV Number 2:</td>
+			        				<td><input type="text" name="tpv_no2" value="<?php echo $record['tpv_no2']; ?>" /></td>
 			        			</tr>
 			        			<tr>
 			        				<td>Call Record ID:</td>
