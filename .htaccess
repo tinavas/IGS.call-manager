@@ -1,3 +1,7 @@
+# Limit access to localhost
+deny from all
+allow from 127.0.0.1
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /campaigns/igs/call-manager-dev/
