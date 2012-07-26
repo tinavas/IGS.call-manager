@@ -21,7 +21,7 @@
 								</tr>
 								<tr>
 									<td></td>
-									<td><input type="submit" name="search" id="search" value="Search" /></td>
+									<td><input type="submit" name="search" id="search" value="Search" /> - <a href="<?php echo base_url(); ?>agent/manual/record" class="button">Add new record</a></td>
 								</tr>
 			        			<?php if (validation_errors()) : ?>
 								<tr>

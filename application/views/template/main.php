@@ -33,7 +33,7 @@
 <!-- Custom Scripts-->
 <script type="text/javascript">
 	$(function() {
-		$("input:submit").button();
+		$("input:submit, .button").button();
 		$('input:text, input:password').button().css({
 			'font' : 'inherit',
 			'color' : 'inherit',
