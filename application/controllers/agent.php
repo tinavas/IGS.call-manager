@@ -210,4 +210,12 @@ class Agent extends CI_Controller {
 		}
 	}
 
+	/*
+	 * Show list of scripts for manual verification
+	*/
+	public function scripts() {
+		//load view
+		$this -> load -> view('template/main', array('content' => 'agent/scripts', 'location' => 'Agent / Scripts'));
+	}
+
 }

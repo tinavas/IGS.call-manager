@@ -6,6 +6,7 @@
 				<ul>
 					<li><a href="<?php echo base_url() . 'agent'; ?>">Home</a></li>
 					<li><a href="<?php echo base_url().'agent/manual'; ?>">Manual Verification</a></li>
+					<li><a href="<?php echo base_url().'agent/scripts'; ?>">Scripts</a></li>
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">

@@ -31,7 +31,7 @@
 <script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/plugins/jquery.tablesorter.min.js"></script>
 
 <!-- Custom Scripts-->
-<script>
+<script type="text/javascript">
 	$(function() {
 		$("input:submit").button();
 		$('input:text, input:password').button().css({
