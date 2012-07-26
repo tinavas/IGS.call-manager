@@ -4,8 +4,8 @@
 			<div class="clearFix"></div>
 			<div class="leftcontentBody">
 				<ul>
-					<li><a href="<?php echo base_url().'agent'; ?>">Search</a></li>
-					
+					<li><a href="<?php echo base_url().'agent'; ?>">Home</a></li>
+					<li><a href="<?php echo base_url().'agent/manual'; ?>">Manual Verification</a></li>
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">
@@ -113,7 +113,7 @@
 			        			</tr>
 			        			<tr>
 			        				<td>Call Notes:</td>
-			        				<td><textarea rows="4" cols="50" name="call_notes"><?php echo $record['call_notes']; ?></textarea></td>
+			        				<td><textarea rows="4" cols="50" name="call_notes" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font: inherit; color: inherit; text-align: left; outline: medium none; cursor: text; background: none repeat scroll 0% 0% transparent; border-radius: 0px 0px 0px 0px;"><?php echo $record['call_notes']; ?></textarea></td>
 			        			</tr>
 			        			<tr>
 			        				<td></td>

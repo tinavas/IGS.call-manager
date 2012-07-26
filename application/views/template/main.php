@@ -30,6 +30,21 @@
 <link type="text/css" href="<?php echo base_url(); ?>styles/css/tablesorter/style.css" rel="stylesheet" />
 <script type="text/javascript" src="<?php echo base_url() ?>scripts/jquery/plugins/jquery.tablesorter.min.js"></script>
 
+<!-- Custom Scripts-->
+<script>
+	$(function() {
+		$("input:submit").button();
+		$('input:text, input:password').button().css({
+			'font' : 'inherit',
+			'color' : 'inherit',
+			'text-align' : 'left',
+			'outline' : 'none',
+			'cursor' : 'text',
+			'background' : 'none',
+			'border-radius' : '0'
+		});
+	});
+</script>
 </head>
 <body>
 	<div id="content">

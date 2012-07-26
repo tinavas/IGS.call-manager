@@ -11,7 +11,7 @@
 	        <div class="rightcontentBody">
         		<div class="frm_container">
 		        	<form action="" method="post">
-		        		<div class="frm_heading"><span>Search Record</span></div>
+		        		<div class="frm_heading"><span>Search Manual Verification Record</span></div>
 		        		<div class="frm_inputs">
 			        		<table class="form_tbl">
 			        			<tr>
@@ -54,21 +54,21 @@
 	        			<table class="tablesorter" cellspacing="1">
 			        		<thead>
 			        			<tr>
-			        				<th class="{sorter: false}">Phone</th>
+			        				<th>Phone</th>
+			        				<th>Customer Name</th>
 			        				<th>Agent</th>
-			        				<th>Disposition</th>
-			        				<th>Last Update Date (Manila)</th>
+			        				<th>Date (Manila)</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
 			        		<tbody>
-			        			<?php foreach($result->result_array() as $info) : ?>
+			        			<?php foreach($result->result_array() as $info): ?>
 			        			<tr>
 				        			<td><?php echo $info['phone']; ?></td>
+				        			<td><?php echo $info['first_name'].' '.$info['last_name']; ?></td>
 				        			<td><?php echo $info['user_name']; ?></td>
-				        			<td><?php echo $this -> Record_model -> get_disposition($info['disposition_id']); ?></td>
 				        			<td><?php echo $info['rdate']; ?></td>
-				        			<td><a href="<?php echo base_url() . 'agent/edit/' . $info['record_id']; ?>">Modify</a></td>
+				        			<td><a href="<?php echo base_url() . 'agent/manual/record/' . $info['record_id']; ?>">Modify</a></td>
 			        			</tr>
 			        			<?php endforeach; ?>
 			        		</tbody>
@@ -80,45 +80,39 @@
 	        		<div class="frm_heading"><span>Result - No Record Found!</span></div>
 	        		<div class="frm_inputs"></div>
         		</div>		
-	        	<div class="manage_menu"><a href="<?php echo base_url() . 'agent/add/' . $_POST['phone']; ?>" class="button_add">Create new record</a></div>
 	        	<div class="clearFix"></div>
         			<?php endif; ?>
         		<?php endif; ?>
-        		<?php if(isset($records)) : ?>
-        			<?php if($records) : ?>
+        		<div class="clearFix"></div>
+        		<?php if($records_manual) : ?>
         		<div class="frm_container">
-	        		<div class="frm_heading"><span>Previous Records</span></div>
+	        		<div class="frm_heading"><span>Previous Manual Verification Records</span></div>
 	        		<div class="frm_inputs">
 	        			<table class="tablesorter" cellspacing="1">
 			        		<thead>
 			        			<tr>
-			        				<th class="{sorter: false}">Phone</th>
+			        				<th>Phone</th>
+			        				<th>Customer Name</th>
 			        				<th>Agent</th>
-			        				<th>Disposition</th>
-			        				<th>Last Update Date (Manila)</th>
+			        				<th>Date (Manila)</th>
 			        				<th>Action</th>
 			        			</tr>
 			        		</thead>
 			        		<tbody>
-			        			<?php foreach($records->result_array() as $record): ?>
+			        			<?php foreach($records_manual->result_array() as $record): ?>
 			        			<tr>
 				        			<td><?php echo $record['phone']; ?></td>
+				        			<td><?php echo $record['first_name'].' '.$record['last_name']; ?></td>
 				        			<td><?php echo $record['user_name']; ?></td>
-				        			<td><?php echo $this -> Record_model -> get_disposition($record['disposition_id']); ?></td>
 				        			<td><?php echo $record['rdate']; ?></td>
-				        			<td><a href="<?php echo base_url() . 'agent/edit/' . $record['record_id']; ?>">Modify</a></td>
+				        			<td><a href="<?php echo base_url() . 'agent/manual/record/' . $record['record_id']; ?>">Modify</a></td>
 			        			</tr>
 			        			<?php endforeach; ?>
 			        		</tbody>
 			        	</table>
 	        		</div>
         		</div>
-        			<?php else : ?>
-        		<div class="frm_container">
-	        		<div class="frm_heading"><span>No Recent Records</span></div>
-	        		<div class="frm_inputs"></div>
-        		</div>		
-        			<?php endif; ?>
+        		<?php else : ?>
         		<?php endif; ?>
         		<div class="clearFix"></div>
 	        </div>

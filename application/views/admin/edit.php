@@ -113,7 +113,7 @@
 			        			</tr>
 			        			<tr>
 			        				<td>Call Notes:</td>
-			        				<td><textarea rows="4" cols="50" name="call_notes"><?php echo $record['call_notes']; ?></textarea></td>
+			        				<td><textarea rows="4" cols="50" name="call_notes" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font: inherit; color: inherit; text-align: left; outline: medium none; cursor: text; background: none repeat scroll 0% 0% transparent; border-radius: 0px 0px 0px 0px;"><?php echo $record['call_notes']; ?></textarea></td>
 			        			</tr>
 			        			<tr>
 			        				<td></td>

@@ -105,6 +105,7 @@ class Admin extends CI_Controller {
 		//validate dates
 		$this -> form_validation -> set_rules('sdate', 'Start Date', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('edate', 'End Date', 'trim|required|xss_clean');
+		$this -> form_validation -> set_rules('rtype', 'Report Type', 'trim|required|xss_clean');
 
 		if ($this -> form_validation -> run() == FALSE) {
 			//load view
@@ -112,7 +113,8 @@ class Admin extends CI_Controller {
 		} else {
 			$sdate = $this->input->post('sdate');
 			$edate = $this->input->post('edate');
-			$result = $this -> Admin_model -> report($sdate, $edate);
+			$type = $this->input->post('rtype');
+			$result = $this -> Admin_model -> report($sdate, $edate, $type);
 
 			//load view
 			//$this -> load -> view('template/main', array('content' => 'admin/reports', 'location' => 'Admin / Reports'));

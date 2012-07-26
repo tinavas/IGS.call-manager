@@ -27,6 +27,10 @@
 									<td><input type="text" name="edate" id="edate" /></td>
 								</tr>
 								<tr>
+									<td>Report Type:</td>
+									<td><select name="rtype"><option value="1">Verification</option><option value="2">Manual Verification</option></select></td>
+								</tr>
+								<tr>
 									<td></td>
 									<td><input type="submit" name="search" id="search" value="Download" /></td>
 								</tr>
