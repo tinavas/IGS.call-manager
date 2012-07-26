@@ -6,13 +6,20 @@ class Admin extends CI_Controller {
 	 */
 	public function Admin() {
 		parent::__construct();
-
+		
+		if($this -> session -> userdata('IGS.user_type') == 1) {
+			//redirect if not agent
+			redirect('/agent/');
+		} elseif($this -> session -> userdata('IGS.user_type') == 9) {
+			
+		} else {
+			//logout
+			redirect('/user/logout');
+		}
+		
 		//load model
 		$this -> load -> model('Admin_model');
 		$this -> load -> model('Record_model');
-		
-		//set maximum execution file to infinite
-		ini_set('MAX_EXECUTION_TIME', -1);
 	}
 
 	/*

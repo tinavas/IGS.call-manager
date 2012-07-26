@@ -6,7 +6,17 @@ class Agent extends CI_Controller {
 	 */
 	public function Agent() {
 		parent::__construct();
-
+		
+		if($this -> session -> userdata('IGS.user_type') == 1) {
+			
+		} elseif($this -> session -> userdata('IGS.user_type') == 9) {
+			//redirect if not agent
+			redirect('/admin/');
+		} else {
+			//logout
+			redirect('/user/logout');
+		}
+		
 		//load model
 		$this -> load -> model('Agent_model');
 		$this -> load -> model('Record_model');
