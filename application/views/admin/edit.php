@@ -83,9 +83,13 @@
 			        				<td>Disposition:</td>
 			        				<td><?php echo form_dropdown('disposition_id',$dropdown['dispositions'],$record['disposition_id'],'id="disposition_id"'); ?></td>
 			        			</tr>
-			        			<tr id="sub_dispo">
+			        			<tr id="sub_dispo_24">
 			        				<td>Sub-Disposition:</td>
-			        				<td><?php echo form_dropdown('sub_disposition_id',$dropdown['sub_dispositions'],$record['sub_disposition_id']); ?></td>
+			        				<td><?php echo form_dropdown('sub_disposition_id',$dropdown['sub_dispositions_24'],$record['sub_disposition_id']); ?></td>
+			        			</tr>
+			        			<tr id="sub_dispo_2">
+			        				<td>Sub-Disposition:</td>
+			        				<td><?php echo form_dropdown('sub_disposition_id',$dropdown['sub_dispositions_2'],$record['sub_disposition_id']); ?></td>
 			        			</tr>
 			        			<tr>
 			        				<td>Flag Reason:</td>
@@ -156,24 +160,37 @@
 	        <div class="clearFix"></div>
 		</div>
 		<script type="text/javascript">
+			//initially do not display sub_dispositions fields
+			$("[id^=sub_dispo_]").hide();
+		
 			function check_flag_reason(value) {
 				if(value == 7) {
 					$("#flag_others").show("slow", function() {
 						$(this).effect("highlight", {}, 1000);
 					});
 				} else {
-					$("#flag_others").hide("slow");
+					$("#flag_others").hide();
 				}
 				
 			}
 			
 			function check_disposition(value) {
-				if(value == 24) {
-					$("#sub_dispo").show("slow", function() {
+				if(value == 24 || value == 2) {
+					//change id of the other dropdown to prevent inconsistency od data submitted
+					if(value == 24) {
+						$("#sub_dispo_2 select").attr("name", "sub_disposition_id_not_selected");
+						$("#sub_dispo_24 select").attr("name", "sub_disposition_id");
+					} else if (value == 2) {
+						$("#sub_dispo_24 select").attr("name", "sub_disposition_id_not_selected");
+						$("#sub_dispo_2 select").attr("name", "sub_disposition_id");
+					}
+					
+					$("[id^=sub_dispo_]").hide();
+					$("#sub_dispo_" + value).show("slow", function() {
 						$(this).effect("highlight", {}, 1000);
 					});
 				} else {
-					$("#sub_dispo").hide("slow");
+					$("[id^=sub_dispo_]").hide();
 				}
 				
 			}

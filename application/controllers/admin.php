@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 	public function edit($record_id = NULL) {
 
 		//validation
-		if($this->input->post('disposition_id') == 24) {
+		if($this->input->post('disposition_id') == 24 OR $this->input->post('disposition_id') == 2) {
 			$this -> form_validation -> set_rules('sub_disposition_id', 'Sub-Disposition', 'trim|required|xss_clean');
 		} else {
 			$this -> form_validation -> set_rules('sub_disposition_id', 'Sub-Disposition', 'trim|xss_clean');
@@ -89,10 +89,15 @@ class Admin extends CI_Controller {
 			foreach($dispositions as $data) {
 				$dispo_filter += array($data['disposition_id'] => $data['label']);
 			}
-			$sub_dispositions = $this -> Record_model -> get_dispositions(array('active' => 1, 'sub' => 1, 'sub_dispo_id' => 24));
-			$sub_dispo_filter = array('' => '');
-			foreach($sub_dispositions as $data) {
-				$sub_dispo_filter += array($data['disposition_id'] => $data['label']);
+			$sub_dispositions_24 = $this -> Record_model -> get_dispositions(array('active' => 1, 'sub' => 1, 'sub_dispo_id' => 24));
+			$sub_dispo_filter_24 = array('' => '');
+			foreach($sub_dispositions_24 as $data) {
+				$sub_dispo_filter_24 += array($data['disposition_id'] => $data['label']);
+			}
+			$sub_dispositions_2 = $this -> Record_model -> get_dispositions(array('active' => 1, 'sub' => 1, 'sub_dispo_id' => 2));
+			$sub_dispo_filter_2 = array('' => '');
+			foreach($sub_dispositions_2 as $data) {
+				$sub_dispo_filter_2 += array($data['disposition_id'] => $data['label']);
 			}
 			//get flag reasons
 			$flags = $this -> Record_model -> get_flag_reasons();
@@ -102,13 +107,15 @@ class Admin extends CI_Controller {
 			$markets = $this -> Record_model -> get_markets();
 
 			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispo_filter, 'sub_dispositions' => $sub_dispo_filter, 'flags' => $flags, 'markets' => $markets), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
+			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispo_filter, 'sub_dispositions_24' => $sub_dispo_filter_24, 'sub_dispositions_2' => $sub_dispo_filter_2, 'flags' => $flags, 'markets' => $markets), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
 		} else {
 			if (isset($_POST['submit_record'])) {
-				//destroy submit_borrower from the POST array
+				//destroy submit_borrower or sub_disposition_id_not_selected from the POST array
 				unset($_POST['submit_record']);
+				unset($_POST['sub_disposition_id_not_selected']);
 				//add borrower
 				$return = $this -> Record_model -> update($record_id, $_POST);
+				
 				if ($return) {
 					$this -> session -> set_flashdata('prompt', '<div><span class="prompt">Record updated.</span></div>');
 

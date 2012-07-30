@@ -144,8 +144,8 @@ Class Record_model extends CI_Model {
 			$param['flag_others'] = NULL;
 		}
 		
-		//check if disposition_id is 24, if not then assign NULL
-		if ($param['disposition_id'] != 24) {
+		//check if disposition_id is 24 and 2, if not then assign NULL
+		if ($param['disposition_id'] != 24 AND $param['disposition_id'] != 2) {
 			$param['sub_disposition_id'] = NULL;
 		}
 
@@ -166,8 +166,8 @@ Class Record_model extends CI_Model {
 			$param['flag_others'] = NULL;
 		}
 		
-		//check if disposition_id is 24, if not then assign NULL
-		if ($param['disposition_id'] != 24) {
+		//check if disposition_id is 24 and 2, if not then assign NULL
+		if ($param['disposition_id'] != 24 AND $param['disposition_id'] != 2) {
 			$param['sub_disposition_id'] = NULL;
 		}
 
