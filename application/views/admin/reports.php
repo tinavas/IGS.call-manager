@@ -28,7 +28,7 @@
 								</tr>
 								<tr>
 									<td>Report Type:</td>
-									<td><select name="rtype"><option value="1">Verification</option><option value="2">Manual Verification</option></select></td>
+									<td><select name="rtype"><option value="1">Verification</option><option value="2">Manual Verification</option><option value="3">Quick Calls</option></select></td>
 								</tr>
 								<tr>
 									<td></td>

@@ -7,6 +7,7 @@
 					<li><a href="<?php echo base_url().'agent'; ?>">Home</a></li>
 					<li><a href="<?php echo base_url().'agent/manual'; ?>">Manual Verification</a></li>
 					<li><a href="<?php echo base_url().'agent/scripts'; ?>">Scripts</a></li>
+					<li><a href="<?php echo base_url().'agent/quick'; ?>">Quick Call</a></li>
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">
@@ -15,6 +16,7 @@
 	        	<?php else : ?>
 	        	<form action="" method="post">
 	        		<div class="frm_container">
+	        			<?php echo $this->session->flashdata('prompt'); ?>
 		        		<div class="frm_heading"><span>Customer Info</span></div>
 		        		<div class="frm_inputs">
 		        			<table class="form_tbl">

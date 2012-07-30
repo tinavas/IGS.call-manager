@@ -81,7 +81,11 @@
 		        			<table class="form_tbl">
 		        				<tr>
 			        				<td>Disposition:</td>
-			        				<td><?php echo form_dropdown('disposition_id',$dropdown['dispositions'],$record['disposition_id']); ?></td>
+			        				<td><?php echo form_dropdown('disposition_id',$dropdown['dispositions'],$record['disposition_id'],'id="disposition_id"'); ?></td>
+			        			</tr>
+			        			<tr id="sub_dispo">
+			        				<td>Sub-Disposition:</td>
+			        				<td><?php echo form_dropdown('sub_disposition_id',$dropdown['sub_dispositions'],$record['sub_disposition_id']); ?></td>
 			        			</tr>
 			        			<tr>
 			        				<td>Flag Reason:</td>
@@ -154,24 +158,42 @@
 		<script type="text/javascript">
 			function check_flag_reason(value) {
 				if(value == 7) {
-					$("#flag_others").show("fast", function() {
-						$(this).effect("highlight", {}, 2000);
+					$("#flag_others").show("slow", function() {
+						$(this).effect("highlight", {}, 1000);
 					});
 				} else {
-					$("#flag_others").hide("fast");
+					$("#flag_others").hide("slow");
+				}
+				
+			}
+			
+			function check_disposition(value) {
+				if(value == 24) {
+					$("#sub_dispo").show("slow", function() {
+						$(this).effect("highlight", {}, 1000);
+					});
+				} else {
+					$("#sub_dispo").hide("slow");
 				}
 				
 			}
 			
 			init_flag_id = $("#flag_id").val();
+			init_disposition = $("#disposition_id").val();
 			check_flag_reason(init_flag_id);
+			check_disposition(init_disposition);
 			
 			$("#flag_id").change(function(){
 				selected = $(this).val();
 				check_flag_reason(selected);
 			});
 			
-		
+			$("#disposition_id").change(function(){
+				selected = $(this).val();
+				check_disposition(selected);
+			});
+			
+			
 			$("#channel").change(function(){
 				channels = <?php echo json_encode($dropdown['channels_state']); ?>;
 

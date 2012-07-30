@@ -84,14 +84,21 @@ Class Record_model extends CI_Model {
 		return false;
 	}
 
-	public function get_dispositions($show_all = FALSE) {
-		$query = $show_all == FALSE ? $this -> db -> get_where('igs_dispositions', array('active' => 1)) : $this -> db -> get('igs_dispositions');
-		$dispositions = $show_all == FALSE ? array('' => '') : array();
+	public function get_dispositions($filter = array()) {
+		
+		//test if filter was set
+		if(count($filter) > 0) {
+			$query = $this -> db -> get_where('igs_dispositions', $filter);
+		} else {
+			$query = $this -> db -> get('igs_dispositions');
+		}
+		
+		$dispositions = array();
 
 		foreach ($query->result_array() as $row) {
-			$dispositions += $show_all == FALSE ? array($row['disposition_id'] => $row['label']) : array($row['disposition_id'] => array('label' => $row['label'], 'active' => $row['active']));
+			$dispositions[] = $row;
 		}
-
+		
 		return $dispositions;
 	}
 
@@ -136,6 +143,11 @@ Class Record_model extends CI_Model {
 		if ($param['flag_id'] != 7) {
 			$param['flag_others'] = NULL;
 		}
+		
+		//check if disposition_id is 24, if not then assign NULL
+		if ($param['disposition_id'] != 24) {
+			$param['sub_disposition_id'] = NULL;
+		}
 
 		$insert = $this -> db -> insert('igs_records', $param);
 
@@ -152,6 +164,11 @@ Class Record_model extends CI_Model {
 		//check if flag_id is 7, if not then assign NULL
 		if ($param['flag_id'] != 7) {
 			$param['flag_others'] = NULL;
+		}
+		
+		//check if disposition_id is 24, if not then assign NULL
+		if ($param['disposition_id'] != 24) {
+			$param['sub_disposition_id'] = NULL;
 		}
 
 		$update = $this -> db -> update('igs_records', $param, array('record_id' => $record_id));
@@ -266,6 +283,68 @@ Class Record_model extends CI_Model {
 	 */
 	public function search_manual($phone, $user_name) {
 		$query = $this -> db -> get_where('igs_records_manual', array('phone' => $phone, 'user_name' => $user_name), 1);
+
+		if ($query -> num_rows() == 1) {
+			return $query;
+		}
+		return false;
+	}
+	
+	/*
+	 * get recent records per user
+	 */
+	public function get_records_quick($agent_name) {
+		$this -> db -> order_by('record_id', 'DESC');
+		$query = $this -> db -> get_where('igs_records_quick', array('user_name' => $agent_name), 20);
+
+		if ($query -> num_rows() > 0) {
+			return $query;
+		}
+		return false;
+	}
+	
+	/*
+	 * add info of manual verif record
+	 */
+	public function add_quick($param = array()) {
+		$insert = $this -> db -> insert('igs_records_quick', $param);
+
+		if ($insert) {
+			return $this -> db -> insert_id();
+		}
+		return FALSE;
+	}
+
+	/*
+	 * update info of manual verif record
+	 */
+	public function update_quick($record_id, $param = array()) {
+		$update = $this -> db -> update('igs_records_quick', $param, array('record_id' => $record_id));
+
+		if ($update) {
+			return $record_id;
+		}
+		return FALSE;
+	}
+	
+	/*
+	 * fetch info of manual verif record
+	 */
+	public function get_info_quick($record_id) {
+		$query = $this -> db -> get_where('igs_records_quick', array('record_id' => $record_id), 1);
+
+		if ($query -> num_rows() == 1) {
+			$row = $query -> row_array();
+			return $row;
+		}
+		return FALSE;
+	}
+	
+	/*
+	 * Search manual verif record with same phone number
+	 */
+	public function search_quick($callid, $user_name) {
+		$query = $this -> db -> get_where('igs_records_quick', array('call_record_id' => $callid, 'user_name' => $user_name));
 
 		if ($query -> num_rows() == 1) {
 			return $query;

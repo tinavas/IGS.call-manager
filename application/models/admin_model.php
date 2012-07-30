@@ -27,6 +27,15 @@ class Admin_model extends CI_Model {
 				WHERE rdate >= '{$sdate}' AND rdate <= '{$edate}'
 			");
 			$filename = 'IGS Manual Verification Report.csv';
+		} elseif($type == 3) {
+			$query = $this->db->query("
+				SELECT a.call_record_id as 'call_id', a.user_name as 'agent', b.`label` as 'disposition', a.rdate as 'date'
+				FROM igs_records_quick a
+				LEFT JOIN igs_dispositions b
+				  ON a.disposition_id = b.disposition_id
+				WHERE rdate >= '{$sdate}' AND rdate <= '{$edate}'
+			");
+			$filename = 'IGS Quick Call Report.csv';
 		}
 		
 		$this->load->helper('csv');

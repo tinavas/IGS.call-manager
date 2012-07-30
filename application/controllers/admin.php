@@ -45,6 +45,18 @@ class Admin extends CI_Controller {
 	public function edit($record_id = NULL) {
 
 		//validation
+		if($this->input->post('disposition_id') == 24) {
+			$this -> form_validation -> set_rules('sub_disposition_id', 'Sub-Disposition', 'trim|required|xss_clean');
+		} else {
+			$this -> form_validation -> set_rules('sub_disposition_id', 'Sub-Disposition', 'trim|xss_clean');
+		}
+
+		if($this->input->post('flag_id') == 7) {
+			$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|required|xss_clean');
+		} else {
+			$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
+		}
+		
 		$this -> form_validation -> set_rules('user_name', 'User Name', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('phone', 'Phone Number', 'trim|required|xss_clean');
 		$this -> form_validation -> set_rules('customer_name', 'Customer Name', 'trim|required|xss_clean');
@@ -53,8 +65,9 @@ class Admin extends CI_Controller {
 		$this -> form_validation -> set_rules('channel', 'Channel', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('state', 'State', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|required|xss_clean');
+		//$this -> form_validation -> set_rules('sub_disposition_id', 'Sub-Disposition', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('flag_id', 'Flag Reason', 'trim|xss_clean');
-		$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
+		//$this -> form_validation -> set_rules('flag_others', 'Flag Others', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('tpv_no', 'TPV Number', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id', 'Call Record ID', 'trim|xss_clean');
 		$this -> form_validation -> set_rules('call_record_id2', 'Call Record ID 2', 'trim|xss_clean');
@@ -71,7 +84,16 @@ class Admin extends CI_Controller {
 			//get channels per state
 			$channels_state = $this -> Record_model -> get_channels('state');
 			//get dispositions
-			$dispositions = $this -> Record_model -> get_dispositions();
+			$dispositions = $this -> Record_model -> get_dispositions(array('active' => 1, 'sub' => 0));
+			$dispo_filter = array('' => '');
+			foreach($dispositions as $data) {
+				$dispo_filter += array($data['disposition_id'] => $data['label']);
+			}
+			$sub_dispositions = $this -> Record_model -> get_dispositions(array('active' => 1, 'sub' => 1, 'sub_dispo_id' => 24));
+			$sub_dispo_filter = array('' => '');
+			foreach($sub_dispositions as $data) {
+				$sub_dispo_filter += array($data['disposition_id'] => $data['label']);
+			}
 			//get flag reasons
 			$flags = $this -> Record_model -> get_flag_reasons();
 			//get existing record info
@@ -80,7 +102,7 @@ class Admin extends CI_Controller {
 			$markets = $this -> Record_model -> get_markets();
 
 			//load view
-			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispositions, 'flags' => $flags, 'markets' => $markets), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
+			$this -> load -> view('template/main', array('content' => 'admin/edit', 'location' => 'Admin / Edit Record', 'dropdown' => array('channels' => $channels, 'channels_state' => $channels_state, 'dispositions' => $dispo_filter, 'sub_dispositions' => $sub_dispo_filter, 'flags' => $flags, 'markets' => $markets), 'record' => $info, 'menu' => array('Logout' => 'login/logout', )));
 		} else {
 			if (isset($_POST['submit_record'])) {
 				//destroy submit_borrower from the POST array
@@ -177,9 +199,13 @@ class Admin extends CI_Controller {
 				break;
 			default:
 				//get dispositions including inactive
-				$dispositions = $this -> Record_model -> get_dispositions(TRUE);
+				$dispositions = $this -> Record_model -> get_dispositions(array('sub' => 0));
+				$dispo_filter = array();
+				foreach($dispositions as $data) {
+					$dispo_filter += array($data['disposition_id'] => array('label' => $data['label'], 'active' => $data['active']));
+				}
 				//load view
-				$this -> load -> view('template/main', array('content' => 'admin/disposition', 'dispositions' => $dispositions, 'location' => 'Admin / Disposition Management'));
+				$this -> load -> view('template/main', array('content' => 'admin/disposition', 'dispositions' => $dispo_filter, 'location' => 'Admin / Disposition Management'));
 				break;
 		}
 	}
