@@ -20,6 +20,9 @@
         				<li><a href="<?php echo base_url();?>agent-scripts/OHIO - DOOR TO DOOR - PLATINUM - DUKE - GAS ONLY.htm" target="_blank">OHIO - DOOR TO DOOR - PLATINUM - DUKE - GAS ONLY</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/PA - PECO - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA - PECO - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/OH - DOOR TO DOOR - PLATINUM - DUKE - ELECT ONLY.htm" target="_blank">OH - DOOR TO DOOR - PLATINUM - DUKE - ELECT ONLY</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA - DOOR  TO DOOR - PLATINUM - OPTIONAL DUAL SALE_Columbia AND Duquesne.htm" target="_blank">PA - DOOR  TO DOOR - PLATINUM - OPTIONAL DUAL SALE_Columbia AND Duquesne</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/OH - DOOR TO DOOR - PLATINUM - DUKE - DUAL OPTIONAL.htm" target="_blank">OH - DOOR TO DOOR - PLATINUM - DUKE - DUAL OPTIONAL</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/Verification Call Flow.htm" target="_blank">Verification Call Flow</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/PPL Electricity TPV - Blank.htm" target="_blank">PPL Electricity TPV - Blank</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/PECO ELECTRIC RESIDENTIAL TPV - Blank.htm" target="_blank">PECO ELECTRIC RESIDENTIAL TPV - Blank</a></li>
