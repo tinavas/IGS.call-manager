@@ -11,19 +11,32 @@
 				</ul>
 	        </div>
 	        <div class="rightcontentBody">
+	        	<div class="frm_container">
+        			<div class="frm_heading"><span>List of scripts - 08/14/2012</span></div>
+        			<ul>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA-DUQUESNE - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-DUQUESNE - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA-COLUMBIAS GAS - DOOR TO DOOR  - PLATINUM - GAS ONLY.htm" target="_blank">PA-COLUMBIAS GAS - DOOR TO DOOR  - PLATINUM - GAS ONLY</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/OHIO - DOOR TO DOOR - PLATINUM - DUKE - GAS ONLY.htm" target="_blank">OHIO - DOOR TO DOOR - PLATINUM - DUKE - GAS ONLY</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA - PECO - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA - PECO - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/Verification Call Flow.htm" target="_blank">Verification Call Flow</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PPL Electricity TPV - Blank.htm" target="_blank">PPL Electricity TPV - Blank</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/PECO ELECTRIC RESIDENTIAL TPV - Blank.htm" target="_blank">PECO ELECTRIC RESIDENTIAL TPV - Blank</a></li>
+        			</ul>
+        		</div>
         		<div class="frm_container">
         			<div class="frm_heading"><span>List of scripts</span></div>
         			<ul>
         				<li><a href="<?php echo base_url();?>agent-scripts/COMED and NICOR DUAL TPV - Blank.htm" target="_blank">COMED and NICOR DUAL TPV - Blank</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/COMED ELECTRICITY TPV - Blank.htm" target="_blank">COMED ELECTRICITY TPV - Blank</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/FCON-499-0613MV - CROSSFIRE.htm" target="_blank">FCON-499-0613MV - CROSSFIRE</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/FCON-499-0613MV - PLAT.htm" target="_blank">FCON-499-0613MV - PLAT</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/FMC-449-0613MV - CROSSFIRE.htm" target="_blank">FMC-449-0613MV - CROSSFIRE</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/FMC-499-0613-MV - PLAT.htm" target="_blank">FMC-499-0613-MV - PLAT</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/FPECO-889-I12MV-RES-Crossfire.htm" target="_blank">FPECO-889-I12MV-RES-Crossfire</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/MICHIGAN D2D PLATINUM GAS ONLY TPV SCRIPT.htm" target="_blank">MICHIGAN D2D PLATINUM GAS ONLY TPV SCRIPT</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/FCON-499-0613MV - CROSSFIRE.htm" target="_blank">MICHIGAN – CROSSFIRE – CONSUMER GAS</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/FCON-499-0613MV - PLAT.htm" target="_blank">MICHIGAN – DOOR TO DOOR – PLATINUM - CONSUMER GAS</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/FMC-449-0613MV - CROSSFIRE.htm" target="_blank">MICHIGAN – CROSSFIRE – DTE GAS</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/FMC-499-0613-MV - PLAT.htm" target="_blank">MICHIGAN – DOOR TO DOOR - PLATINUM – DTE GAS</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/FPECO-889-I12MV-RES-Crossfire.htm" target="_blank">PA – CROSSFIRE – PECO (RESI)</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/NICOR GAS TPV - Blank.htm" target="_blank">NICOR GAS TPV - Blank</a></li>
-        				<li><a href="<?php echo base_url();?>agent-scripts/OHIO D2D PLATINUM DUAL ACCOUNT TPV SCRIPT.htm" target="_blank">OHIO D2D PLATINUM DUAL ACCOUNT TPV SCRIPT</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/OHIO D2D PLATINUM DUAL ACCOUNT TPV SCRIPT.htm" target="_blank">OHIO - DOOR TO DOOR - PLATINUM - DUAL SALE (Vectren AND DPL)</a></li>
         			</ul>
         		</div>
 	        </div>
