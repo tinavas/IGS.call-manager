@@ -12,7 +12,14 @@
 	        </div>
 	        <div class="rightcontentBody">
 	        	<div class="frm_container">
-        			<div class="frm_heading"><span>List of scripts - 08/14/2012</span></div>
+        			<div class="frm_heading"><span>08/17/2012</span></div>
+        			<ul>
+        				<li><a href="<?php echo base_url();?>agent-scripts/MD - DOOR TO DOOR - PLATINUM - BGE - GAS ONLY.htm" target="_blank">MD - DOOR TO DOOR - PLATINUM - BGE - GAS ONLY</a></li>
+        				<li><a href="<?php echo base_url();?>agent-scripts/MD - DOOR TO DOOR - PLATINUM - BGE - DUAL SALE.htm" target="_blank">MD - DOOR TO DOOR - PLATINUM - BGE - DUAL SALE</a></li>
+        			</ul>
+        		</div>
+	        	<div class="frm_container">
+        			<div class="frm_heading"><span>08/14/2012</span></div>
         			<ul>
         				<li><a href="<?php echo base_url();?>agent-scripts/PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-PPL - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/PA-DUQUESNE - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE.htm" target="_blank">PA-DUQUESNE - DOOR TO DOOR  - PLATINUM - OPTIONAL DUAL SALE</a></li>
@@ -29,7 +36,7 @@
         			</ul>
         		</div>
         		<div class="frm_container">
-        			<div class="frm_heading"><span>List of scripts</span></div>
+        			<div class="frm_heading"><span>07/26/2012</span></div>
         			<ul>
         				<li><a href="<?php echo base_url();?>agent-scripts/COMED and NICOR DUAL TPV - Blank.htm" target="_blank">COMED and NICOR DUAL TPV - Blank</a></li>
         				<li><a href="<?php echo base_url();?>agent-scripts/COMED ELECTRICITY TPV - Blank.htm" target="_blank">COMED ELECTRICITY TPV - Blank</a></li>
