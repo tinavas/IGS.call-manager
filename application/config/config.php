@@ -246,7 +246,7 @@ $config['encryption_key'] = 'A9FJjjd9df2127542454DSssaR';
 |
 */
 $config['sess_cookie_name']		= 'igs_session';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 32400;
 $config['sess_expire_on_close']	= TRUE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= TRUE;
