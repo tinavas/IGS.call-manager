@@ -306,6 +306,7 @@ class Agent extends CI_Controller {
 		} elseif ($action == 'record') {
 			//validation
 			$this -> form_validation -> set_rules('user_name', 'Agent', 'trim|required|xss_clean');
+			$this -> form_validation -> set_rules('did', 'DID/TFN', 'trim|required|xss_clean');
 			$this -> form_validation -> set_rules('call_record_id', 'Call ID', 'trim|required|xss_clean');
 			$this -> form_validation -> set_rules('disposition_id', 'Disposition', 'trim|required|xss_clean');
 
@@ -349,5 +350,4 @@ class Agent extends CI_Controller {
 			}
 		}
 	}
-
 }

@@ -24,6 +24,10 @@
 			        				<td>Agent:</td>
 			        				<td><input type="text" name="user_name" readonly="readonly" value="<?php echo $record['user_name']; ?>" /></td>
 			        			</tr>
+			        			<tr>
+			        				<td>DID/TFN:</td>
+			        				<td><input type="text" name="did" value="<?php echo $record['did']; ?>" /></td>
+			        			</tr>
 		        				<tr>
 			        				<td>Call ID:</td>
 			        				<td><input type="text" name="call_record_id" value="<?php echo $record['call_record_id']; ?>" /></td>

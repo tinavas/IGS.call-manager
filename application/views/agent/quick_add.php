@@ -20,6 +20,10 @@
 			        				<td>Agent:</td>
 			        				<td><input type="text" name="user_name" readonly="readonly" value="<?php echo $this->session->userdata('IGS.username'); ?>" /></td>
 			        			</tr>
+			        			<tr>
+			        				<td>DID/TFN:</td>
+			        				<td><input type="text" name="did" value="<?php echo isset($_GET['did'])?$_GET['did']:''; ?>" /></td>
+			        			</tr>
 		        				<tr>
 			        				<td>Call ID:</td>
 			        				<td><input type="text" name="call_record_id" value="<?php echo set_value('call_record_id'); ?>" /></td>
