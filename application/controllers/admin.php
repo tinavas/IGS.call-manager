@@ -12,9 +12,6 @@ class Admin extends CI_Controller {
 			redirect('/agent/');
 		} elseif($this -> session -> userdata('IGS.user_type') == 9) {
 			
-		} else {
-			//logout
-			redirect('/user/logout');
 		}
 		
 		//load model

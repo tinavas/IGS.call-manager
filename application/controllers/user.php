@@ -37,7 +37,13 @@ class User extends CI_Controller {
 
 			//check if username/password do exist
 			if ($this -> check_login($username, $password)) {
-				redirect('/'.$this->User_model->get_user_type($username).'/', 'refresh');
+				//check if GET['url'] is set
+				if (isset($_GET['url'])) {
+						redirect('http://'.$_SERVER['SERVER_NAME'].urldecode($_GET['url']));
+				} else{
+					redirect('/'.$this->User_model->get_user_type($username).'/', 'refresh');
+				}
+				
 			} else {
 				//throw an error if login failed
 				$this -> load -> view('template/main', array('content' => 'user/login', 'location' => 'User / Login', 'error' => 'Invalid username/password'));
