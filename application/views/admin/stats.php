@@ -14,7 +14,7 @@
 	        </div>
 	        <div class="rightcontentBody">
         		<div class="frm_container">
-        			Please follow this link: <strong><a href="http://spas12/campaigns/ae-inbound/stats/call_activity.php" target="_blank">HOURLY STATS</a></strong>
+        			Please follow this link: <strong><a href="http://spas12/campaigns/ae-inbound/stats/" target="_blank">HOURLY STATS</a></strong>
         		</div>
 	        </div>
 	        <div class="clearFix"></div>
