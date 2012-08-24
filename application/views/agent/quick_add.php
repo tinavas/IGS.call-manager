@@ -26,7 +26,7 @@
 			        			</tr>
 		        				<tr>
 			        				<td>Call ID:</td>
-			        				<td><input type="text" name="call_record_id" value="<?php echo set_value('call_record_id'); ?>" /></td>
+			        				<td><input type="text" name="call_record_id" value="<?php echo isset($_GET['callid'])?$_GET['callid']:''; ?>" /></td>
 			        			</tr>
 			        			<tr>
 			        				<td>Disposition:</td>

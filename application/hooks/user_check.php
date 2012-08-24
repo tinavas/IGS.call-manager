@@ -4,7 +4,7 @@ class User_check
 	function is_login()
 	{
 		$CI = &get_instance();
-		if ($CI->router->class == 'user')
+		if ($CI->router->class == 'user' OR $CI->router->class == 'did')
 			return TRUE;
 		
 		$sess_id = $CI->session->userdata('IGS.login');
